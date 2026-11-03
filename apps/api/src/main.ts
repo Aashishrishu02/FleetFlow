@@ -9,9 +9,10 @@ async function bootstrap() {
 
   app.enableCors({
   origin: [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-  ],
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://fleet-flow-oshf.vercel.app',
+],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true,
 });
