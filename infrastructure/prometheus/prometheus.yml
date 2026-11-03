@@ -1,0 +1,59 @@
+# ==============================================================================
+# Prometheus Configuration — FleetFlow
+# ==============================================================================
+# Scrape targets for FleetFlow services.
+# OpenTelemetry metrics will be exposed by the NestJS API and worker.
+# ==============================================================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+
+scrape_configs:
+  # --------------------------------------------------------------------------
+  # Prometheus self-monitoring
+  # --------------------------------------------------------------------------
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # --------------------------------------------------------------------------
+  # FleetFlow NestJS API
+  # --------------------------------------------------------------------------
+  # The API will expose /metrics via an OpenTelemetry Prometheus exporter.
+  # Uncomment once the metrics endpoint is implemented.
+  # --------------------------------------------------------------------------
+  # - job_name: "fleetflow-api"
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ["host.docker.internal:3001"]
+  #       labels:
+  #         service: "api"
+
+  # --------------------------------------------------------------------------
+  # FleetFlow Worker
+  # --------------------------------------------------------------------------
+  # - job_name: "fleetflow-worker"
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ["host.docker.internal:3002"]
+  #       labels:
+  #         service: "worker"
+
+  # --------------------------------------------------------------------------
+  # Redpanda internal metrics
+  # --------------------------------------------------------------------------
+  - job_name: "redpanda"
+    static_configs:
+      - targets: ["redpanda:9644"]
+    metrics_path: /public_metrics
+
+  # --------------------------------------------------------------------------
+  # MinIO metrics
+  # --------------------------------------------------------------------------
+  - job_name: "minio"
+    metrics_path: /minio/v2/metrics/cluster
+    static_configs:
+      - targets: ["minio:9000"]
+

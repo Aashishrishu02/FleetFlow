@@ -1,0 +1,270 @@
+# ==============================================================================
+# FleetFlow - Docker Compose
+# ==============================================================================
+# Usage:
+#   docker compose up -d              Start all services
+#   docker compose up -d redis        Start a single service
+#   docker compose ps                 Check service status
+#   docker compose logs -f redpanda   Follow logs for a service
+#
+# IMPORTANT: The PostgreSQL volume "fleetflow_postgres_data" is declared as
+# external. It was created by a standalone container and contains live data.
+# Never run "docker compose down -v" — that flag deletes volumes.
+# ==============================================================================
+
+services:
+  # ============================================================================
+  # PostgreSQL 17
+  # ============================================================================
+  # Adopts the existing standalone "fleetflow-postgres" container config.
+  # Host port 5433 → container port 5432 (avoids conflict with local PG).
+  # Volume "fleetflow_postgres_data" is external to preserve existing data.
+  # ============================================================================
+  postgres:
+    image: postgres:17
+    container_name: fleetflow-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-fleetflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fleetflow_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-fleetflow}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - fleetflow_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fleetflow} -d ${POSTGRES_DB:-fleetflow}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # Redis 7
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: fleetflow-redis
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-fleetflow_redis_secret} --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - fleetflow_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-fleetflow_redis_secret}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # Redpanda (Kafka-compatible event streaming)
+  # ============================================================================
+  # Single-node dev cluster. Listeners:
+  #   - internal: redpanda:9092  (for containers on fleetflow-net)
+  #   - external: localhost:19092 (for host apps / dev tools)
+  # Admin API: 9644, Schema Registry: 8081
+  # ============================================================================
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.3.1
+    container_name: fleetflow-redpanda
+    restart: unless-stopped
+    command:
+      - redpanda
+      - start
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda:9092,external://localhost:19092
+      - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
+      - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082
+      - --rpc-addr redpanda:33145
+      - --advertise-rpc-addr redpanda:33145
+      - --smp 1
+      - --memory 512M
+      - --mode dev-container
+      - --default-log-level=warn
+    ports:
+      - "${REDPANDA_KAFKA_PORT:-19092}:19092"
+      - "${REDPANDA_ADMIN_PORT:-9644}:9644"
+      - "${REDPANDA_SCHEMA_REGISTRY_PORT:-8081}:18081"
+      - "18082:18082"
+    volumes:
+      - fleetflow_redpanda_data:/var/lib/redpanda/data
+    healthcheck:
+      test: ["CMD-SHELL", "rpk cluster health --api-urls localhost:9644 | grep -q 'Healthy.*true'"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # Redpanda Console (web UI for Kafka topics)
+  # ============================================================================
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console:v2.8.0
+    container_name: fleetflow-redpanda-console
+    restart: unless-stopped
+    environment:
+      CONFIG_FILEPATH: ""
+      KAFKA_BROKERS: redpanda:9092
+      KAFKA_SCHEMAREGISTRY_ENABLED: "true"
+      KAFKA_SCHEMAREGISTRY_URLS: http://redpanda:8081
+      REDPANDA_ADMINAPI_ENABLED: "true"
+      REDPANDA_ADMINAPI_URLS: http://redpanda:9644
+    ports:
+      - "${REDPANDA_CONSOLE_PORT:-8080}:8080"
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # MinIO (S3-compatible object storage)
+  # ============================================================================
+  # API: port 9000, Console: port 9001
+  # Default buckets created on startup via minio-init container.
+  # ============================================================================
+  minio:
+    image: cgr.dev/chainguard/minio:latest
+    container_name: fleetflow-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-fleetflow_minio}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-fleetflow_minio_secret}
+      MINIO_PROMETHEUS_AUTH_TYPE: "public"
+    ports:
+      - "${MINIO_API_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - fleetflow_minio_data:/data
+    healthcheck:
+      test: ["CMD", "/usr/bin/bash", "-c", "echo > /dev/tcp/127.0.0.1/9000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # MinIO Init — create default buckets on first start
+  # ============================================================================
+  minio-init:
+    image: cgr.dev/chainguard/minio:latest
+    container_name: fleetflow-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint:
+      - /usr/bin/bash
+      - -c
+      - |
+        mc alias set fleetflow http://minio:9000 $${MINIO_ROOT_USER} $${MINIO_ROOT_PASSWORD}
+        mc mb --ignore-existing fleetflow/fleetflow-documents
+        mc mb --ignore-existing fleetflow/fleetflow-invoices
+        mc mb --ignore-existing fleetflow/fleetflow-proof-of-delivery
+        echo 'MinIO buckets initialized successfully'
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-fleetflow_minio}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-fleetflow_minio_secret}
+      MINIO_PROMETHEUS_AUTH_TYPE: "public"
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # Prometheus
+  # ============================================================================
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: fleetflow-prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=7d
+      - --web.enable-lifecycle
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - fleetflow_prometheus_data:/prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - fleetflow-net
+
+  # ============================================================================
+  # Grafana
+  # ============================================================================
+  # Port 3100 (not 3000) to avoid conflict with common dev server ports.
+  # Datasources and dashboards are auto-provisioned from infrastructure/.
+  # ============================================================================
+  grafana:
+    image: grafana/grafana:11.4.0
+    container_name: fleetflow-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-fleetflow_grafana}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    ports:
+      - "${GRAFANA_PORT:-3100}:3000"
+    volumes:
+      - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning:ro
+      - fleetflow_grafana_data:/var/lib/grafana
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - fleetflow-net
+
+# ==============================================================================
+# Volumes
+# ==============================================================================
+volumes:
+  # External: created by a standalone docker run, contains live FleetFlow data.
+  # docker compose will NOT create or destroy this volume.
+  fleetflow_postgres_data:
+    external: true
+
+  fleetflow_redis_data:
+    driver: local
+
+  fleetflow_redpanda_data:
+    driver: local
+
+  fleetflow_minio_data:
+    driver: local
+
+  fleetflow_prometheus_data:
+    driver: local
+
+  fleetflow_grafana_data:
+    driver: local
+
+# ==============================================================================
+# Networks
+# ==============================================================================
+networks:
+  fleetflow-net:
+    driver: bridge
+

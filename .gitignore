@@ -1,0 +1,39 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Local uploads and temporary files
+uploads/
+tmp/
+temp/
+
+# Backup files
+*.backup
+
+# Local AI editor configuration
+apps/api/.agents/
+apps/api/.claude/
+apps/api/.windsurf/
