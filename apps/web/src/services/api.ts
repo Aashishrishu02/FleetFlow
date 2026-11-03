@@ -4,7 +4,7 @@
  * Strictly communicates with live NestJS endpoints without mock fallbacks.
  */
 
-export const API_BASE_URL = 'http://localhost:3001/api/v1';
+export const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001/api/v1').replace(/\/$/, '');
 export const TOKEN_STORAGE_KEY = 'fleetflow_auth_token';
 
 export class ApiError extends Error {

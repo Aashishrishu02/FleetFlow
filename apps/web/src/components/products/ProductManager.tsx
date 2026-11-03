@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import type { Product } from '../../types/product';
 
-const API_URL = 'http://localhost:3001/api/v1';
+import { API_BASE_URL } from '../../services/api';
 
 const STANDARD_UNITS = ['UNIT', 'PCS', 'BOX', 'PALLET', 'KG', 'LTR', 'MTR', 'PACK'];
 
@@ -49,7 +49,7 @@ export const ProductManager: React.FC = () => {
       if (statusFilter === 'ACTIVE') params.append('isActive', 'true');
       if (statusFilter === 'INACTIVE') params.append('isActive', 'false');
 
-      const res = await fetch(`${API_URL}/products?${params.toString()}`, {
+      const res = await fetch(`${API_BASE_URL}/products?${params.toString()}`, {
         headers: {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -91,7 +91,7 @@ export const ProductManager: React.FC = () => {
     setDetailsLoading(true);
 
     try {
-      const res = await fetch(`${API_URL}/products/${prod.id}`, {
+      const res = await fetch(`${API_BASE_URL}/products/${prod.id}`, {
         headers: {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -157,7 +157,7 @@ export const ProductManager: React.FC = () => {
 
     try {
       const isEdit = !!editingProduct;
-      const url = isEdit ? `${API_URL}/products/${editingProduct.id}` : `${API_URL}/products`;
+      const url = isEdit ? `${API_BASE_URL}/products/${editingProduct.id}` : `${API_BASE_URL}/products`;
       const method = isEdit ? 'PATCH' : 'POST';
 
       const payload = {
@@ -219,7 +219,7 @@ export const ProductManager: React.FC = () => {
 
     try {
       const newStatus = !prod.isActive;
-      const res = await fetch(`${API_URL}/products/${prod.id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/products/${prod.id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

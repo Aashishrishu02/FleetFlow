@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import type { Warehouse, StorageLocation } from '../../types/warehouse';
 
-const API_URL = 'http://localhost:3001/api/v1';
+import { API_BASE_URL } from '../../services/api';
 
 export const WarehouseManager: React.FC = () => {
   const { token, roles, logout } = useAuth();
@@ -58,7 +58,7 @@ export const WarehouseManager: React.FC = () => {
       if (statusFilter === 'ACTIVE') params.append('isActive', 'true');
       if (statusFilter === 'INACTIVE') params.append('isActive', 'false');
 
-      const res = await fetch(`${API_URL}/warehouses?${params.toString()}`, {
+      const res = await fetch(`${API_BASE_URL}/warehouses?${params.toString()}`, {
         headers: {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -99,7 +99,7 @@ export const WarehouseManager: React.FC = () => {
     async (warehouseId: string) => {
       setLocationsLoading(true);
       try {
-        const res = await fetch(`${API_URL}/warehouses/${warehouseId}/locations`, {
+        const res = await fetch(`${API_BASE_URL}/warehouses/${warehouseId}/locations`, {
           headers: {
             'Content-Type': 'application/json',
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -176,8 +176,8 @@ export const WarehouseManager: React.FC = () => {
     try {
       const isEdit = !!editingWarehouse;
       const url = isEdit
-        ? `${API_URL}/warehouses/${editingWarehouse.id}`
-        : `${API_URL}/warehouses`;
+        ? `${API_BASE_URL}/warehouses/${editingWarehouse.id}`
+        : `${API_BASE_URL}/warehouses`;
       const method = isEdit ? 'PATCH' : 'POST';
 
       const payload = {
@@ -240,7 +240,7 @@ export const WarehouseManager: React.FC = () => {
 
     try {
       const newStatus = !wh.isActive;
-      const res = await fetch(`${API_URL}/warehouses/${wh.id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/warehouses/${wh.id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -298,8 +298,8 @@ export const WarehouseManager: React.FC = () => {
     try {
       const isEdit = !!editingLocation;
       const url = isEdit
-        ? `${API_URL}/warehouses/${selectedWarehouse.id}/locations/${editingLocation.id}`
-        : `${API_URL}/warehouses/${selectedWarehouse.id}/locations`;
+        ? `${API_BASE_URL}/warehouses/${selectedWarehouse.id}/locations/${editingLocation.id}`
+        : `${API_BASE_URL}/warehouses/${selectedWarehouse.id}/locations`;
       const method = isEdit ? 'PATCH' : 'POST';
 
       const payload = {

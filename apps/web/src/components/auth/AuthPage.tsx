@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import type { AuthResponse } from '../../types/auth'
 
-const API_URL = 'http://localhost:3001/api/v1'
+import { API_BASE_URL } from '../../services/api'
 
 export const AuthPage: React.FC = () => {
   const { login } = useAuth()
@@ -35,7 +35,7 @@ export const AuthPage: React.FC = () => {
     setLoading(true)
 
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -98,7 +98,7 @@ export const AuthPage: React.FC = () => {
         payload.organizationSlug = regOrgSlug.trim().toLowerCase()
       }
 
-      const response = await fetch(`${API_URL}/auth/register`, {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
