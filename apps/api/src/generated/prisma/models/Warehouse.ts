@@ -227,6 +227,8 @@ export type WarehouseWhereInput = {
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
   inventoryReservations?: Prisma.InventoryReservationListRelationFilter
   inventoryMovements?: Prisma.InventoryMovementListRelationFilter
+  shipments?: Prisma.ShipmentListRelationFilter
+  returns?: Prisma.ReturnListRelationFilter
 }
 
 export type WarehouseOrderByWithRelationInput = {
@@ -245,6 +247,8 @@ export type WarehouseOrderByWithRelationInput = {
   inventoryBalances?: Prisma.InventoryBalanceOrderByRelationAggregateInput
   inventoryReservations?: Prisma.InventoryReservationOrderByRelationAggregateInput
   inventoryMovements?: Prisma.InventoryMovementOrderByRelationAggregateInput
+  shipments?: Prisma.ShipmentOrderByRelationAggregateInput
+  returns?: Prisma.ReturnOrderByRelationAggregateInput
 }
 
 export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
@@ -267,6 +271,8 @@ export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
   inventoryReservations?: Prisma.InventoryReservationListRelationFilter
   inventoryMovements?: Prisma.InventoryMovementListRelationFilter
+  shipments?: Prisma.ShipmentListRelationFilter
+  returns?: Prisma.ReturnListRelationFilter
 }, "id" | "organizationId_code">
 
 export type WarehouseOrderByWithAggregationInput = {
@@ -316,6 +322,8 @@ export type WarehouseCreateInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateInput = {
@@ -333,6 +341,8 @@ export type WarehouseUncheckedCreateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUpdateInput = {
@@ -350,6 +360,8 @@ export type WarehouseUpdateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateInput = {
@@ -367,6 +379,8 @@ export type WarehouseUncheckedUpdateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateManyInput = {
@@ -564,6 +578,34 @@ export type WarehouseUpdateOneRequiredWithoutInventoryMovementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WarehouseUpdateToOneWithWhereWithoutInventoryMovementsInput, Prisma.WarehouseUpdateWithoutInventoryMovementsInput>, Prisma.WarehouseUncheckedUpdateWithoutInventoryMovementsInput>
 }
 
+export type WarehouseCreateNestedOneWithoutShipmentsInput = {
+  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutShipmentsInput, Prisma.WarehouseUncheckedCreateWithoutShipmentsInput>
+  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutShipmentsInput
+  connect?: Prisma.WarehouseWhereUniqueInput
+}
+
+export type WarehouseUpdateOneRequiredWithoutShipmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutShipmentsInput, Prisma.WarehouseUncheckedCreateWithoutShipmentsInput>
+  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutShipmentsInput
+  upsert?: Prisma.WarehouseUpsertWithoutShipmentsInput
+  connect?: Prisma.WarehouseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WarehouseUpdateToOneWithWhereWithoutShipmentsInput, Prisma.WarehouseUpdateWithoutShipmentsInput>, Prisma.WarehouseUncheckedUpdateWithoutShipmentsInput>
+}
+
+export type WarehouseCreateNestedOneWithoutReturnsInput = {
+  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutReturnsInput, Prisma.WarehouseUncheckedCreateWithoutReturnsInput>
+  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutReturnsInput
+  connect?: Prisma.WarehouseWhereUniqueInput
+}
+
+export type WarehouseUpdateOneRequiredWithoutReturnsNestedInput = {
+  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutReturnsInput, Prisma.WarehouseUncheckedCreateWithoutReturnsInput>
+  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutReturnsInput
+  upsert?: Prisma.WarehouseUpsertWithoutReturnsInput
+  connect?: Prisma.WarehouseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WarehouseUpdateToOneWithWhereWithoutReturnsInput, Prisma.WarehouseUpdateWithoutReturnsInput>, Prisma.WarehouseUncheckedUpdateWithoutReturnsInput>
+}
+
 export type WarehouseCreateWithoutOrganizationInput = {
   id?: string
   name: string
@@ -578,6 +620,8 @@ export type WarehouseCreateWithoutOrganizationInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateWithoutOrganizationInput = {
@@ -594,6 +638,8 @@ export type WarehouseUncheckedCreateWithoutOrganizationInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseCreateOrConnectWithoutOrganizationInput = {
@@ -652,6 +698,8 @@ export type WarehouseCreateWithoutLocationsInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateWithoutLocationsInput = {
@@ -668,6 +716,8 @@ export type WarehouseUncheckedCreateWithoutLocationsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseCreateOrConnectWithoutLocationsInput = {
@@ -700,6 +750,8 @@ export type WarehouseUpdateWithoutLocationsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateWithoutLocationsInput = {
@@ -716,6 +768,8 @@ export type WarehouseUncheckedUpdateWithoutLocationsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateWithoutInventoryBalancesInput = {
@@ -732,6 +786,8 @@ export type WarehouseCreateWithoutInventoryBalancesInput = {
   locations?: Prisma.StorageLocationCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateWithoutInventoryBalancesInput = {
@@ -748,6 +804,8 @@ export type WarehouseUncheckedCreateWithoutInventoryBalancesInput = {
   locations?: Prisma.StorageLocationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseCreateOrConnectWithoutInventoryBalancesInput = {
@@ -780,6 +838,8 @@ export type WarehouseUpdateWithoutInventoryBalancesInput = {
   locations?: Prisma.StorageLocationUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateWithoutInventoryBalancesInput = {
@@ -796,6 +856,8 @@ export type WarehouseUncheckedUpdateWithoutInventoryBalancesInput = {
   locations?: Prisma.StorageLocationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateWithoutInventoryReservationsInput = {
@@ -812,6 +874,8 @@ export type WarehouseCreateWithoutInventoryReservationsInput = {
   locations?: Prisma.StorageLocationCreateNestedManyWithoutWarehouseInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateWithoutInventoryReservationsInput = {
@@ -828,6 +892,8 @@ export type WarehouseUncheckedCreateWithoutInventoryReservationsInput = {
   locations?: Prisma.StorageLocationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseCreateOrConnectWithoutInventoryReservationsInput = {
@@ -860,6 +926,8 @@ export type WarehouseUpdateWithoutInventoryReservationsInput = {
   locations?: Prisma.StorageLocationUpdateManyWithoutWarehouseNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateWithoutInventoryReservationsInput = {
@@ -876,6 +944,8 @@ export type WarehouseUncheckedUpdateWithoutInventoryReservationsInput = {
   locations?: Prisma.StorageLocationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateWithoutInventoryMovementsInput = {
@@ -892,6 +962,8 @@ export type WarehouseCreateWithoutInventoryMovementsInput = {
   locations?: Prisma.StorageLocationCreateNestedManyWithoutWarehouseInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateWithoutInventoryMovementsInput = {
@@ -908,6 +980,8 @@ export type WarehouseUncheckedCreateWithoutInventoryMovementsInput = {
   locations?: Prisma.StorageLocationUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseCreateOrConnectWithoutInventoryMovementsInput = {
@@ -940,6 +1014,8 @@ export type WarehouseUpdateWithoutInventoryMovementsInput = {
   locations?: Prisma.StorageLocationUpdateManyWithoutWarehouseNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateWithoutInventoryMovementsInput = {
@@ -956,6 +1032,184 @@ export type WarehouseUncheckedUpdateWithoutInventoryMovementsInput = {
   locations?: Prisma.StorageLocationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
+}
+
+export type WarehouseCreateWithoutShipmentsInput = {
+  id?: string
+  name: string
+  code: string
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutWarehousesInput
+  locations?: Prisma.StorageLocationCreateNestedManyWithoutWarehouseInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutWarehouseInput
+}
+
+export type WarehouseUncheckedCreateWithoutShipmentsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  code: string
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  locations?: Prisma.StorageLocationUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutWarehouseInput
+}
+
+export type WarehouseCreateOrConnectWithoutShipmentsInput = {
+  where: Prisma.WarehouseWhereUniqueInput
+  create: Prisma.XOR<Prisma.WarehouseCreateWithoutShipmentsInput, Prisma.WarehouseUncheckedCreateWithoutShipmentsInput>
+}
+
+export type WarehouseUpsertWithoutShipmentsInput = {
+  update: Prisma.XOR<Prisma.WarehouseUpdateWithoutShipmentsInput, Prisma.WarehouseUncheckedUpdateWithoutShipmentsInput>
+  create: Prisma.XOR<Prisma.WarehouseCreateWithoutShipmentsInput, Prisma.WarehouseUncheckedCreateWithoutShipmentsInput>
+  where?: Prisma.WarehouseWhereInput
+}
+
+export type WarehouseUpdateToOneWithWhereWithoutShipmentsInput = {
+  where?: Prisma.WarehouseWhereInput
+  data: Prisma.XOR<Prisma.WarehouseUpdateWithoutShipmentsInput, Prisma.WarehouseUncheckedUpdateWithoutShipmentsInput>
+}
+
+export type WarehouseUpdateWithoutShipmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutWarehousesNestedInput
+  locations?: Prisma.StorageLocationUpdateManyWithoutWarehouseNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
+}
+
+export type WarehouseUncheckedUpdateWithoutShipmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locations?: Prisma.StorageLocationUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
+}
+
+export type WarehouseCreateWithoutReturnsInput = {
+  id?: string
+  name: string
+  code: string
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutWarehousesInput
+  locations?: Prisma.StorageLocationCreateNestedManyWithoutWarehouseInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutWarehouseInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutWarehouseInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutWarehouseInput
+}
+
+export type WarehouseUncheckedCreateWithoutReturnsInput = {
+  id?: string
+  organizationId: string
+  name: string
+  code: string
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  locations?: Prisma.StorageLocationUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutWarehouseInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutWarehouseInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutWarehouseInput
+}
+
+export type WarehouseCreateOrConnectWithoutReturnsInput = {
+  where: Prisma.WarehouseWhereUniqueInput
+  create: Prisma.XOR<Prisma.WarehouseCreateWithoutReturnsInput, Prisma.WarehouseUncheckedCreateWithoutReturnsInput>
+}
+
+export type WarehouseUpsertWithoutReturnsInput = {
+  update: Prisma.XOR<Prisma.WarehouseUpdateWithoutReturnsInput, Prisma.WarehouseUncheckedUpdateWithoutReturnsInput>
+  create: Prisma.XOR<Prisma.WarehouseCreateWithoutReturnsInput, Prisma.WarehouseUncheckedCreateWithoutReturnsInput>
+  where?: Prisma.WarehouseWhereInput
+}
+
+export type WarehouseUpdateToOneWithWhereWithoutReturnsInput = {
+  where?: Prisma.WarehouseWhereInput
+  data: Prisma.XOR<Prisma.WarehouseUpdateWithoutReturnsInput, Prisma.WarehouseUncheckedUpdateWithoutReturnsInput>
+}
+
+export type WarehouseUpdateWithoutReturnsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutWarehousesNestedInput
+  locations?: Prisma.StorageLocationUpdateManyWithoutWarehouseNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+}
+
+export type WarehouseUncheckedUpdateWithoutReturnsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  locations?: Prisma.StorageLocationUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateManyOrganizationInput = {
@@ -984,6 +1238,8 @@ export type WarehouseUpdateWithoutOrganizationInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateWithoutOrganizationInput = {
@@ -1000,6 +1256,8 @@ export type WarehouseUncheckedUpdateWithoutOrganizationInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutWarehouseNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutWarehouseNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutWarehouseNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1024,6 +1282,8 @@ export type WarehouseCountOutputType = {
   inventoryBalances: number
   inventoryReservations: number
   inventoryMovements: number
+  shipments: number
+  returns: number
 }
 
 export type WarehouseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1031,6 +1291,8 @@ export type WarehouseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   inventoryBalances?: boolean | WarehouseCountOutputTypeCountInventoryBalancesArgs
   inventoryReservations?: boolean | WarehouseCountOutputTypeCountInventoryReservationsArgs
   inventoryMovements?: boolean | WarehouseCountOutputTypeCountInventoryMovementsArgs
+  shipments?: boolean | WarehouseCountOutputTypeCountShipmentsArgs
+  returns?: boolean | WarehouseCountOutputTypeCountReturnsArgs
 }
 
 /**
@@ -1071,6 +1333,20 @@ export type WarehouseCountOutputTypeCountInventoryMovementsArgs<ExtArgs extends 
   where?: Prisma.InventoryMovementWhereInput
 }
 
+/**
+ * WarehouseCountOutputType without action
+ */
+export type WarehouseCountOutputTypeCountShipmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShipmentWhereInput
+}
+
+/**
+ * WarehouseCountOutputType without action
+ */
+export type WarehouseCountOutputTypeCountReturnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReturnWhereInput
+}
+
 
 export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1088,6 +1364,8 @@ export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   inventoryBalances?: boolean | Prisma.Warehouse$inventoryBalancesArgs<ExtArgs>
   inventoryReservations?: boolean | Prisma.Warehouse$inventoryReservationsArgs<ExtArgs>
   inventoryMovements?: boolean | Prisma.Warehouse$inventoryMovementsArgs<ExtArgs>
+  shipments?: boolean | Prisma.Warehouse$shipmentsArgs<ExtArgs>
+  returns?: boolean | Prisma.Warehouse$returnsArgs<ExtArgs>
   _count?: boolean | Prisma.WarehouseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["warehouse"]>
 
@@ -1139,6 +1417,8 @@ export type WarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   inventoryBalances?: boolean | Prisma.Warehouse$inventoryBalancesArgs<ExtArgs>
   inventoryReservations?: boolean | Prisma.Warehouse$inventoryReservationsArgs<ExtArgs>
   inventoryMovements?: boolean | Prisma.Warehouse$inventoryMovementsArgs<ExtArgs>
+  shipments?: boolean | Prisma.Warehouse$shipmentsArgs<ExtArgs>
+  returns?: boolean | Prisma.Warehouse$returnsArgs<ExtArgs>
   _count?: boolean | Prisma.WarehouseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WarehouseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1156,6 +1436,8 @@ export type $WarehousePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     inventoryBalances: Prisma.$InventoryBalancePayload<ExtArgs>[]
     inventoryReservations: Prisma.$InventoryReservationPayload<ExtArgs>[]
     inventoryMovements: Prisma.$InventoryMovementPayload<ExtArgs>[]
+    shipments: Prisma.$ShipmentPayload<ExtArgs>[]
+    returns: Prisma.$ReturnPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1567,6 +1849,8 @@ export interface Prisma__WarehouseClient<T, Null = never, ExtArgs extends runtim
   inventoryBalances<T extends Prisma.Warehouse$inventoryBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$inventoryBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryReservations<T extends Prisma.Warehouse$inventoryReservationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$inventoryReservationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryReservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryMovements<T extends Prisma.Warehouse$inventoryMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$inventoryMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shipments<T extends Prisma.Warehouse$shipmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$shipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  returns<T extends Prisma.Warehouse$returnsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$returnsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2100,6 +2384,54 @@ export type Warehouse$inventoryMovementsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.InventoryMovementScalarFieldEnum | Prisma.InventoryMovementScalarFieldEnum[]
+}
+
+/**
+ * Warehouse.shipments
+ */
+export type Warehouse$shipmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Shipment
+   */
+  select?: Prisma.ShipmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Shipment
+   */
+  omit?: Prisma.ShipmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipmentInclude<ExtArgs> | null
+  where?: Prisma.ShipmentWhereInput
+  orderBy?: Prisma.ShipmentOrderByWithRelationInput | Prisma.ShipmentOrderByWithRelationInput[]
+  cursor?: Prisma.ShipmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShipmentScalarFieldEnum | Prisma.ShipmentScalarFieldEnum[]
+}
+
+/**
+ * Warehouse.returns
+ */
+export type Warehouse$returnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Return
+   */
+  select?: Prisma.ReturnSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Return
+   */
+  omit?: Prisma.ReturnOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReturnInclude<ExtArgs> | null
+  where?: Prisma.ReturnWhereInput
+  orderBy?: Prisma.ReturnOrderByWithRelationInput | Prisma.ReturnOrderByWithRelationInput[]
+  cursor?: Prisma.ReturnWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReturnScalarFieldEnum | Prisma.ReturnScalarFieldEnum[]
 }
 
 /**

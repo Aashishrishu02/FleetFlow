@@ -9,6 +9,7 @@ import {
 
 import { PrismaService } from '../prisma/prisma.service.js';
 import { ReceiveStockDto } from './dto/receive-stock.dto.js';
+import { IssueStockDto } from './dto/issue-stock.dto.js';
 import { ReserveStockDto } from './dto/reserve-stock.dto.js';
 import { ReleaseStockDto } from './dto/release-stock.dto.js';
 
@@ -163,6 +164,145 @@ export class InventoryService {
         message: 'Stock received successfully',
         duplicate: false,
         balance,
+        movement,
+      };
+    });
+  }
+
+  // ==========================================
+  // ISSUE STOCK (OUTBOUND / DISPATCH)
+  // ==========================================
+
+  async issueStock(dto: IssueStockDto) {
+    const orgId = dto.organizationId;
+    if (!orgId) {
+      throw new BadRequestException('Organization ID is required');
+    }
+
+    if (!Number.isInteger(dto.quantity) || dto.quantity <= 0) {
+      throw new BadRequestException('Quantity must be a positive integer');
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      const existingMovement = await tx.inventoryMovement.findUnique({
+        where: { idempotencyKey: dto.idempotencyKey },
+      });
+
+      if (existingMovement) {
+        const sameRequest =
+          existingMovement.movementType === 'DISPATCH' &&
+          existingMovement.organizationId === orgId &&
+          existingMovement.warehouseId === dto.warehouseId &&
+          existingMovement.locationId === dto.locationId &&
+          existingMovement.productId === dto.productId &&
+          existingMovement.quantity === dto.quantity;
+
+        if (!sameRequest) {
+          throw new ConflictException(
+            'Idempotency key already used for a different request',
+          );
+        }
+
+        return {
+          message: 'Stock was already issued',
+          duplicate: true,
+          movement: existingMovement,
+        };
+      }
+
+      const warehouse = await tx.warehouse.findFirst({
+        where: {
+          id: dto.warehouseId,
+          organizationId: orgId,
+          isActive: true,
+        },
+      });
+
+      if (!warehouse) {
+        const crossTenantWarehouse = await tx.warehouse.findUnique({
+          where: { id: dto.warehouseId },
+        });
+        if (crossTenantWarehouse && crossTenantWarehouse.organizationId !== orgId) {
+          throw new ForbiddenException(
+            'Cross-tenant warehouse access denied: Warehouse belongs to a different organization',
+          );
+        }
+        throw new NotFoundException('Warehouse not found or inactive');
+      }
+
+      const location = await tx.storageLocation.findFirst({
+        where: {
+          id: dto.locationId,
+          warehouseId: dto.warehouseId,
+        },
+      });
+
+      if (!location) {
+        throw new NotFoundException('Storage location not found in warehouse');
+      }
+
+      const product = await tx.product.findFirst({
+        where: {
+          id: dto.productId,
+          organizationId: orgId,
+          isActive: true,
+        },
+      });
+
+      if (!product) {
+        const crossTenantProduct = await tx.product.findUnique({
+          where: { id: dto.productId },
+        });
+        if (crossTenantProduct && crossTenantProduct.organizationId !== orgId) {
+          throw new ForbiddenException(
+            'Cross-tenant product access denied: Product belongs to a different organization',
+          );
+        }
+        throw new NotFoundException('Product not found or inactive');
+      }
+
+      const balance = await tx.inventoryBalance.findUnique({
+        where: {
+          warehouseId_locationId_productId: {
+            warehouseId: dto.warehouseId,
+            locationId: dto.locationId,
+            productId: dto.productId,
+          },
+        },
+      });
+
+      if (!balance || balance.availableQty < dto.quantity) {
+        throw new BadRequestException(
+          `Insufficient available stock. Available: ${balance?.availableQty ?? 0}, Requested: ${dto.quantity}`,
+        );
+      }
+
+      const updatedBalance = await tx.inventoryBalance.update({
+        where: { id: balance.id },
+        data: {
+          availableQty: { decrement: dto.quantity },
+        },
+      });
+
+      const movement = await tx.inventoryMovement.create({
+        data: {
+          organizationId: orgId,
+          warehouseId: dto.warehouseId,
+          locationId: dto.locationId,
+          productId: dto.productId,
+          movementType: 'DISPATCH',
+          quantity: dto.quantity,
+          referenceType: dto.referenceType || 'MANUAL_ISSUE',
+          referenceId: dto.referenceId || null,
+          idempotencyKey: dto.idempotencyKey,
+          notes: dto.notes || 'Outbound inventory issue',
+        },
+      });
+
+      return {
+        message: 'Stock issued successfully',
+        duplicate: false,
+        balance: updatedBalance,
         movement,
       };
     });
@@ -516,6 +656,200 @@ export class InventoryService {
         reservation: finalReservation,
         movement,
       };
+    });
+  }
+
+  // ==========================================
+  // 3b. ADJUST STOCK (Cycle Count & Damage Quarantine)
+  // ==========================================
+
+  async adjustStock(
+    organizationId: string,
+    dto: {
+      warehouseId: string;
+      locationId: string;
+      productId: string;
+      quantity: number;
+      reason: 'RECONCILIATION' | 'DAMAGE';
+      notes?: string;
+      idempotencyKey: string;
+    },
+  ) {
+    return this.prisma.$transaction(async (tx) => {
+      const existingMovement = await tx.inventoryMovement.findUnique({
+        where: { idempotencyKey: dto.idempotencyKey },
+      });
+      if (existingMovement) {
+        return { message: 'Stock adjustment already processed', duplicate: true, movement: existingMovement };
+      }
+
+      const balance = await tx.inventoryBalance.findUnique({
+        where: {
+          warehouseId_locationId_productId: {
+            warehouseId: dto.warehouseId,
+            locationId: dto.locationId,
+            productId: dto.productId,
+          },
+        },
+      });
+
+      if (!balance || balance.organizationId !== organizationId) {
+        throw new NotFoundException('Inventory balance record not found');
+      }
+
+      if (dto.reason === 'DAMAGE') {
+        if (balance.availableQty < dto.quantity) {
+          throw new BadRequestException('Insufficient available inventory to mark as damaged');
+        }
+        await tx.inventoryBalance.update({
+          where: { id: balance.id },
+          data: {
+            availableQty: { decrement: dto.quantity },
+            damagedQty: { increment: dto.quantity },
+          },
+        });
+      } else {
+        // AUDIT_CORRECTION (delta can be positive or negative)
+        if (balance.availableQty + dto.quantity < 0) {
+          throw new BadRequestException('Adjustment would result in negative available inventory');
+        }
+        await tx.inventoryBalance.update({
+          where: { id: balance.id },
+          data: {
+            availableQty: { increment: dto.quantity },
+          },
+        });
+      }
+
+      const movement = await tx.inventoryMovement.create({
+        data: {
+          organizationId,
+          warehouseId: dto.warehouseId,
+          locationId: dto.locationId,
+          productId: dto.productId,
+          movementType: dto.reason,
+          quantity: dto.quantity,
+          referenceType: 'MANUAL_ADJUSTMENT',
+          referenceId: balance.id,
+          idempotencyKey: dto.idempotencyKey,
+        },
+      });
+
+      return { message: 'Stock adjusted successfully', duplicate: false, movement };
+    });
+  }
+
+  // ==========================================
+  // 3c. INTER-FACILITY STOCK TRANSFER
+  // ==========================================
+
+  async transferStock(
+    organizationId: string,
+    dto: {
+      fromWarehouseId: string;
+      fromLocationId: string;
+      toWarehouseId: string;
+      toLocationId: string;
+      productId: string;
+      quantity: number;
+      idempotencyKey: string;
+    },
+  ) {
+    if (dto.quantity <= 0) {
+      throw new BadRequestException('Transfer quantity must be greater than zero');
+    }
+
+    return this.prisma.$transaction(async (tx) => {
+      const existingMovement = await tx.inventoryMovement.findUnique({
+        where: { idempotencyKey: dto.idempotencyKey },
+      });
+      if (existingMovement) {
+        return { message: 'Stock transfer already processed', duplicate: true, movement: existingMovement };
+      }
+
+      // Check source balance
+      const sourceBalance = await tx.inventoryBalance.findUnique({
+        where: {
+          warehouseId_locationId_productId: {
+            warehouseId: dto.fromWarehouseId,
+            locationId: dto.fromLocationId,
+            productId: dto.productId,
+          },
+        },
+      });
+
+      if (!sourceBalance || sourceBalance.organizationId !== organizationId) {
+        throw new NotFoundException('Source inventory balance record not found');
+      }
+
+      if (sourceBalance.availableQty < dto.quantity) {
+        throw new BadRequestException('Insufficient available inventory at source location for transfer');
+      }
+
+      // Validate destination warehouse & location
+      const destLocation = await tx.storageLocation.findFirst({
+        where: { id: dto.toLocationId, warehouseId: dto.toWarehouseId, organizationId },
+      });
+      if (!destLocation) {
+        throw new NotFoundException('Destination warehouse or storage location not found');
+      }
+
+      // Decrement source
+      await tx.inventoryBalance.update({
+        where: { id: sourceBalance.id },
+        data: { availableQty: { decrement: dto.quantity } },
+      });
+
+      // Upsert destination
+      await tx.inventoryBalance.upsert({
+        where: {
+          warehouseId_locationId_productId: {
+            warehouseId: dto.toWarehouseId,
+            locationId: dto.toLocationId,
+            productId: dto.productId,
+          },
+        },
+        create: {
+          organizationId,
+          warehouseId: dto.toWarehouseId,
+          locationId: dto.toLocationId,
+          productId: dto.productId,
+          availableQty: dto.quantity,
+        },
+        update: {
+          availableQty: { increment: dto.quantity },
+        },
+      });
+
+      // Log Outbound Movement
+      const outMovement = await tx.inventoryMovement.create({
+        data: {
+          organizationId,
+          warehouseId: dto.fromWarehouseId,
+          locationId: dto.fromLocationId,
+          productId: dto.productId,
+          movementType: 'TRANSFER_OUT',
+          quantity: dto.quantity,
+          referenceType: 'TRANSFER',
+          idempotencyKey: dto.idempotencyKey,
+        },
+      });
+
+      // Log Inbound Movement
+      await tx.inventoryMovement.create({
+        data: {
+          organizationId,
+          warehouseId: dto.toWarehouseId,
+          locationId: dto.toLocationId,
+          productId: dto.productId,
+          movementType: 'TRANSFER_IN',
+          quantity: dto.quantity,
+          referenceType: 'TRANSFER',
+          idempotencyKey: `${dto.idempotencyKey}-in`,
+        },
+      });
+
+      return { message: 'Stock transferred successfully', duplicate: false, movement: outMovement };
     });
   }
 

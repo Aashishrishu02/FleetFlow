@@ -125,8 +125,8 @@ export const AuthPage: React.FC = () => {
 
   const fillDemoCredentials = () => {
     setMode('login')
-    setLoginEmail('demo@fleetflow.io')
-    setLoginPassword('FleetFlow2026!')
+    setLoginEmail('admin@fleetflow.io')
+    setLoginPassword('Admin@123456!')
     setError(null)
   }
 
@@ -297,7 +297,7 @@ export const AuthPage: React.FC = () => {
                   className="w-full rounded-lg border border-slate-700/80 bg-slate-800/40 py-2.5 px-3 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition flex items-center justify-center gap-2"
                 >
                   <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
-                  Fill Demo Operator (demo@fleetflow.io)
+                  Quick Demo: Organization Owner (admin@fleetflow.io)
                 </button>
               </div>
             </form>

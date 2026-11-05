@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -200,6 +201,30 @@ export class WarehousesController {
       locationId,
       dto,
     );
+  }
+
+  @Delete(':id')
+  @RequirePermissions(Permission.WAREHOUSES_WRITE)
+  @ApiOperation({ summary: 'Delete warehouse safely if no active inventory balances exist' })
+  @ApiParam({ name: 'id', description: 'Warehouse UUID' })
+  async deleteWarehouse(
+    @CurrentTenant() tenant: TenantContext,
+    @Param('id', ParseUUIDPipe) id: string,
+  ) {
+    return this.warehousesService.deleteWarehouse(tenant.organizationId, id);
+  }
+
+  @Delete(':warehouseId/locations/:locationId')
+  @RequirePermissions(Permission.WAREHOUSES_WRITE)
+  @ApiOperation({ summary: 'Delete storage location safely if no inventory balances exist' })
+  @ApiParam({ name: 'warehouseId', description: 'Warehouse UUID' })
+  @ApiParam({ name: 'locationId', description: 'Storage Location UUID' })
+  async deleteLocation(
+    @CurrentTenant() tenant: TenantContext,
+    @Param('warehouseId', ParseUUIDPipe) warehouseId: string,
+    @Param('locationId', ParseUUIDPipe) locationId: string,
+  ) {
+    return this.warehousesService.deleteLocation(tenant.organizationId, warehouseId, locationId);
   }
 }
 

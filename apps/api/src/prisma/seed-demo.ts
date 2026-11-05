@@ -3,141 +3,148 @@ import { PrismaClient } from '../generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
 import 'dotenv/config';
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+});
 const prisma = new PrismaClient({ adapter });
 
 async function seedDemoUser() {
-  const hash = await bcrypt.hash('FleetFlow2026!', 10);
-  const email = 'demo@fleetflow.io';
-
-  const user = await prisma.user.upsert({
-    where: { email },
-    update: { passwordHash: hash },
+  // Create or find demo organization
+  const org = await prisma.organization.upsert({
+    where: { slug: 'fleetflow-demo' },
+    update: {},
     create: {
-      name: 'FleetFlow Demo Operator',
-      email,
-      passwordHash: hash,
+      name: 'FleetFlow Demo Organization',
+      slug: 'fleetflow-demo',
     },
   });
 
-  const demoOrgId = '810d6d5c-8112-4072-83f0-b7127daa6c85';
+  // Demo operator
+  const passwordHash = await bcrypt.hash('FleetFlow2026!', 10);
 
-  const org = await prisma.organization.findUnique({
-    where: { id: demoOrgId },
+  const user = await prisma.user.upsert({
+    where: { email: 'demo@fleetflow.io' },
+    update: { passwordHash },
+    create: {
+      name: 'FleetFlow Demo Operator',
+      email: 'demo@fleetflow.io',
+      passwordHash,
+    },
   });
 
-  if (org) {
-    const role = await prisma.role.upsert({
-      where: {
-        organizationId_name: {
-          organizationId: demoOrgId,
-          name: 'Organization Owner',
-        },
-      },
-      update: {},
-      create: {
-        organizationId: demoOrgId,
+  const ownerRole = await prisma.role.upsert({
+    where: {
+      organizationId_name: {
+        organizationId: org.id,
         name: 'Organization Owner',
-        description: 'Demo Administrator and Owner',
-        isSystem: true,
       },
-    });
+    },
+    update: {},
+    create: {
+      organizationId: org.id,
+      name: 'Organization Owner',
+      description: 'Demo Administrator and Owner',
+      isSystem: true,
+    },
+  });
 
-    const membership = await prisma.membership.upsert({
-      where: {
-        organizationId_userId: {
-          organizationId: demoOrgId,
-          userId: user.id,
-        },
-      },
-      update: {
-        status: 'ACTIVE',
-      },
-      create: {
-        organizationId: demoOrgId,
+  const membership = await prisma.membership.upsert({
+    where: {
+      organizationId_userId: {
+        organizationId: org.id,
         userId: user.id,
-        status: 'ACTIVE',
       },
-    });
+    },
+    update: { status: 'ACTIVE' },
+    create: {
+      organizationId: org.id,
+      userId: user.id,
+      status: 'ACTIVE',
+    },
+  });
 
-    await prisma.membershipRole.upsert({
-      where: {
-        membershipId_roleId: {
-          membershipId: membership.id,
-          roleId: role.id,
-        },
-      },
-      update: {},
-      create: {
+  await prisma.membershipRole.upsert({
+    where: {
+      membershipId_roleId: {
         membershipId: membership.id,
-        roleId: role.id,
+        roleId: ownerRole.id,
       },
-    });
+    },
+    update: {},
+    create: {
+      membershipId: membership.id,
+      roleId: ownerRole.id,
+    },
+  });
 
-    console.log('Demo user seeded successfully (demo@fleetflow.io / FleetFlow2026!)');
+  console.log('Demo operator seeded successfully.');
 
-    // Seed Auditor user
-    const auditorHash = await bcrypt.hash('Auditor2026!', 10);
-    const auditorUser = await prisma.user.upsert({
-      where: { email: 'auditor@fleetflow.io' },
-      update: { passwordHash: auditorHash },
-      create: {
-        name: 'FleetFlow Auditor',
-        email: 'auditor@fleetflow.io',
-        passwordHash: auditorHash,
-      },
-    });
+  // Auditor account
+  const auditorHash = await bcrypt.hash('Auditor2026!', 10);
 
-    const auditorRole = await prisma.role.upsert({
-      where: {
-        organizationId_name: {
-          organizationId: demoOrgId,
-          name: 'Auditor',
-        },
-      },
-      update: {},
-      create: {
-        organizationId: demoOrgId,
+  const auditorUser = await prisma.user.upsert({
+    where: { email: 'auditor@fleetflow.io' },
+    update: { passwordHash: auditorHash },
+    create: {
+      name: 'FleetFlow Auditor',
+      email: 'auditor@fleetflow.io',
+      passwordHash: auditorHash,
+    },
+  });
+
+  const auditorRole = await prisma.role.upsert({
+    where: {
+      organizationId_name: {
+        organizationId: org.id,
         name: 'Auditor',
-        description: 'Read-only compliance and auditing role',
-        isSystem: true,
       },
-    });
+    },
+    update: {},
+    create: {
+      organizationId: org.id,
+      name: 'Auditor',
+      description: 'Read-only compliance and auditing role',
+      isSystem: true,
+    },
+  });
 
-    const auditorMembership = await prisma.membership.upsert({
-      where: {
-        organizationId_userId: {
-          organizationId: demoOrgId,
-          userId: auditorUser.id,
-        },
-      },
-      update: { status: 'ACTIVE' },
-      create: {
-        organizationId: demoOrgId,
+  const auditorMembership = await prisma.membership.upsert({
+    where: {
+      organizationId_userId: {
+        organizationId: org.id,
         userId: auditorUser.id,
-        status: 'ACTIVE',
       },
-    });
+    },
+    update: { status: 'ACTIVE' },
+    create: {
+      organizationId: org.id,
+      userId: auditorUser.id,
+      status: 'ACTIVE',
+    },
+  });
 
-    await prisma.membershipRole.upsert({
-      where: {
-        membershipId_roleId: {
-          membershipId: auditorMembership.id,
-          roleId: auditorRole.id,
-        },
-      },
-      update: {},
-      create: {
+  await prisma.membershipRole.upsert({
+    where: {
+      membershipId_roleId: {
         membershipId: auditorMembership.id,
         roleId: auditorRole.id,
       },
-    });
+    },
+    update: {},
+    create: {
+      membershipId: auditorMembership.id,
+      roleId: auditorRole.id,
+    },
+  });
 
-    console.log('Auditor user seeded successfully (auditor@fleetflow.io / Auditor2026!)');
-  }
+  console.log('Auditor account seeded successfully.');
 }
 
 seedDemoUser()
-  .catch(console.error)
-  .finally(() => prisma.$disconnect());
-
+  .catch((error) => {
+    console.error('Demo seeding failed:', error);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

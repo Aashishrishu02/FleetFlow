@@ -24,6 +24,7 @@ export interface Product {
   name: string;
   sku: string;
   description: string | null;
+  category?: string | null;
   unit: string;
   isActive: boolean;
   createdAt: string;

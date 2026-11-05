@@ -28,6 +28,12 @@ export class CreateProductDto {
   @MaxLength(500)
   description?: string;
 
+  @ApiPropertyOptional({ description: 'Product category', example: 'Hardware' })
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  category?: string;
+
   @ApiPropertyOptional({ description: 'Unit of measure', example: 'UNIT', default: 'UNIT' })
   @IsOptional()
   @IsString()

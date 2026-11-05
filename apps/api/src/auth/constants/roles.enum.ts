@@ -1,8 +1,12 @@
 export enum RoleName {
   ORGANIZATION_OWNER = 'Organization Owner',
+  ADMIN = 'Admin',
+  MANAGER = 'Manager',
   OPERATIONS_MANAGER = 'Operations Manager',
   WAREHOUSE_MANAGER = 'Warehouse Manager',
+  INVENTORY_MANAGER = 'Inventory Manager',
   WAREHOUSE_OPERATOR = 'Warehouse Operator',
+  DISPATCHER = 'Dispatcher',
   DELIVERY_PARTNER = 'Delivery Partner',
   FINANCE_MANAGER = 'Finance Manager',
   AUDITOR = 'Auditor',
@@ -12,6 +16,7 @@ export enum Permission {
   // Inventory
   INVENTORY_READ = 'inventory:read',
   INVENTORY_RECEIVE = 'inventory:receive',
+  INVENTORY_ISSUE = 'inventory:issue',
   INVENTORY_RESERVE = 'inventory:reserve',
   INVENTORY_RELEASE = 'inventory:release',
   INVENTORY_ADJUST = 'inventory:adjust',
@@ -52,9 +57,12 @@ export enum Permission {
 export const ROLE_PERMISSIONS: Record<RoleName | string, Permission[]> = {
   [RoleName.ORGANIZATION_OWNER]: Object.values(Permission),
 
-  [RoleName.OPERATIONS_MANAGER]: [
+  [RoleName.ADMIN]: Object.values(Permission),
+
+  [RoleName.MANAGER]: [
     Permission.INVENTORY_READ,
     Permission.INVENTORY_RECEIVE,
+    Permission.INVENTORY_ISSUE,
     Permission.INVENTORY_RESERVE,
     Permission.INVENTORY_RELEASE,
     Permission.INVENTORY_ADJUST,
@@ -73,9 +81,55 @@ export const ROLE_PERMISSIONS: Record<RoleName | string, Permission[]> = {
     Permission.AUDIT_READ,
   ],
 
+  [RoleName.OPERATIONS_MANAGER]: [
+    Permission.INVENTORY_READ,
+    Permission.INVENTORY_RECEIVE,
+    Permission.INVENTORY_ISSUE,
+    Permission.INVENTORY_RESERVE,
+    Permission.INVENTORY_RELEASE,
+    Permission.INVENTORY_ADJUST,
+    Permission.INVENTORY_TRANSFER,
+    Permission.PRODUCTS_READ,
+    Permission.PRODUCTS_WRITE,
+    Permission.WAREHOUSES_READ,
+    Permission.WAREHOUSES_WRITE,
+    Permission.ORDERS_READ,
+    Permission.ORDERS_WRITE,
+    Permission.SHIPMENTS_READ,
+    Permission.SHIPMENTS_WRITE,
+    Permission.DISPATCH_READ,
+    Permission.DISPATCH_WRITE,
+    Permission.FINANCE_READ,
+    Permission.AUDIT_READ,
+  ],
+
+  [RoleName.INVENTORY_MANAGER]: [
+    Permission.INVENTORY_READ,
+    Permission.INVENTORY_RECEIVE,
+    Permission.INVENTORY_ISSUE,
+    Permission.INVENTORY_RESERVE,
+    Permission.INVENTORY_RELEASE,
+    Permission.INVENTORY_ADJUST,
+    Permission.INVENTORY_TRANSFER,
+    Permission.PRODUCTS_READ,
+    Permission.PRODUCTS_WRITE,
+    Permission.WAREHOUSES_READ,
+    Permission.AUDIT_READ,
+  ],
+
+  [RoleName.DISPATCHER]: [
+    Permission.SHIPMENTS_READ,
+    Permission.SHIPMENTS_WRITE,
+    Permission.DISPATCH_READ,
+    Permission.DISPATCH_WRITE,
+    Permission.ORDERS_READ,
+    Permission.AUDIT_READ,
+  ],
+
   [RoleName.WAREHOUSE_MANAGER]: [
     Permission.INVENTORY_READ,
     Permission.INVENTORY_RECEIVE,
+    Permission.INVENTORY_ISSUE,
     Permission.INVENTORY_RESERVE,
     Permission.INVENTORY_RELEASE,
     Permission.INVENTORY_ADJUST,
@@ -92,6 +146,7 @@ export const ROLE_PERMISSIONS: Record<RoleName | string, Permission[]> = {
   [RoleName.WAREHOUSE_OPERATOR]: [
     Permission.INVENTORY_READ,
     Permission.INVENTORY_RECEIVE,
+    Permission.INVENTORY_ISSUE,
     Permission.INVENTORY_RESERVE,
     Permission.INVENTORY_RELEASE,
     Permission.PRODUCTS_READ,

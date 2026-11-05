@@ -16,5 +16,9 @@ export class CreateStorageLocationDto {
     message: 'Location code must contain only letters, numbers, hyphens, and underscores',
   })
   code: string;
+
+  @ApiProperty({ description: 'Storage location type (Zone, Rack, Shelf, Bin)', example: 'Rack', required: false })
+  @IsString()
+  type?: string;
 }
 

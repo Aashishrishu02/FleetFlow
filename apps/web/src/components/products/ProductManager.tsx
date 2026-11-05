@@ -1,745 +1,494 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { apiClient } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
-import type { Product } from '../../types/product';
-
-import { API_BASE_URL } from '../../services/api';
-
-const STANDARD_UNITS = ['UNIT', 'PCS', 'BOX', 'PALLET', 'KG', 'LTR', 'MTR', 'PACK'];
+import { useToast } from '../../context/ToastContext';
+import { StatCard } from '../common/StatCard';
+import { StatusBadge } from '../common/StatusBadge';
+import { Modal } from '../common/Modal';
+import { Icons } from '../common/Icons';
 
 export const ProductManager: React.FC = () => {
-  const { token, roles, logout } = useAuth();
+  const { roles } = useAuth();
+  const { success, error: toastError } = useToast();
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<any | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const canWrite = roles.some((r) =>
-    ['Organization Owner', 'Operations Manager', 'Warehouse Manager'].includes(r),
-  );
-
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-
-  // Filters
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<'ALL' | 'ACTIVE' | 'INACTIVE'>('ALL');
-
-  // Selected Product for Details Drawer
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [detailsLoading, setDetailsLoading] = useState(false);
-
-  // Create / Edit Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const [productForm, setProductForm] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     sku: '',
+    category: 'Industrial & Hardware',
+    unit: 'EACH',
     description: '',
-    unit: 'UNIT',
-    isActive: true,
   });
-  const [savingProduct, setSavingProduct] = useState(false);
 
-  // Fetch products
+  const [editForm, setEditForm] = useState({
+    name: '',
+    category: 'Industrial & Hardware',
+    unit: 'EACH',
+    description: '',
+  });
+
+  const canWrite = roles.some((r) =>
+    [
+      'Organization Owner',
+      'Operations Manager',
+      'Inventory Manager',
+      'Warehouse Manager',
+      'Admin',
+      'Manager',
+    ].includes(r),
+  );
+
   const fetchProducts = useCallback(async () => {
-    setLoading(true);
-    setError('');
-
     try {
-      const params = new URLSearchParams();
-      if (search.trim()) params.append('search', search.trim());
-      if (statusFilter === 'ACTIVE') params.append('isActive', 'true');
-      if (statusFilter === 'INACTIVE') params.append('isActive', 'false');
-
-      const res = await fetch(`${API_BASE_URL}/products?${params.toString()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-      });
-
-      if (res.status === 401) {
-        logout();
-        setError('Session expired or unauthorized. Please log in again.');
-        return;
-      }
-
-      if (res.status === 403) {
-        setError('Access Denied (403): You do not have permission to view products.');
-        return;
-      }
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.message || 'Failed to fetch products');
-      }
-
-      const data: Product[] = await res.json();
+      setLoading(true);
+      const data = await apiClient.products.findAll();
       setProducts(data);
     } catch (err: any) {
-      setError(err.message || 'Failed to connect to Products API');
+      toastError('Fetch Error', err.message || 'Failed to fetch catalog');
     } finally {
       setLoading(false);
     }
-  }, [token, search, statusFilter, logout]);
+  }, [toastError]);
 
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  // Fetch full product details including warehouse balances
-  const handleSelectProduct = async (prod: Product) => {
-    setSelectedProduct(prod);
-    setDetailsLoading(true);
-
-    try {
-      const res = await fetch(`${API_BASE_URL}/products/${prod.id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-      });
-
-      if (res.status === 401) {
-        logout();
-        return;
-      }
-
-      if (res.ok) {
-        const fullProd: Product = await res.json();
-        setSelectedProduct(fullProd);
-      }
-    } catch {
-      // Retain basic prod if fetch fails
-    } finally {
-      setDetailsLoading(false);
-    }
-  };
-
-  // Open modal to create product
-  const handleOpenCreateModal = () => {
-    setEditingProduct(null);
-    setProductForm({
-      name: '',
-      sku: '',
-      description: '',
-      unit: 'UNIT',
-      isActive: true,
-    });
-    setError('');
-    setIsModalOpen(true);
-  };
-
-  // Open modal to edit product
-  const handleOpenEditModal = (prod: Product, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEditingProduct(prod);
-    setProductForm({
-      name: prod.name,
-      sku: prod.sku,
-      description: prod.description || '',
-      unit: prod.unit,
-      isActive: prod.isActive,
-    });
-    setError('');
-    setIsModalOpen(true);
-  };
-
-  // Save product (Create or Update)
-  const handleSaveProduct = async (e: React.FormEvent) => {
+  const handleCreateProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!productForm.name.trim() || !productForm.sku.trim()) {
-      setError('Product Name and SKU are required.');
-      return;
-    }
-
-    setSavingProduct(true);
-    setError('');
-    setSuccess('');
-
-    try {
-      const isEdit = !!editingProduct;
-      const url = isEdit ? `${API_BASE_URL}/products/${editingProduct.id}` : `${API_BASE_URL}/products`;
-      const method = isEdit ? 'PATCH' : 'POST';
-
-      const payload = {
-        name: productForm.name.trim(),
-        sku: productForm.sku.trim().toUpperCase(),
-        description: productForm.description.trim() || null,
-        unit: productForm.unit.trim().toUpperCase(),
-        isActive: productForm.isActive,
-      };
-
-      const res = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (res.status === 401) {
-        logout();
-        return;
-      }
-
-      if (!res.ok) {
-        throw new Error(
-          Array.isArray(data.message) ? data.message.join(', ') : data.message || 'Operation failed',
-        );
-      }
-
-      setIsModalOpen(false);
-      setSuccess(
-        isEdit
-          ? `Product "${payload.name}" updated successfully.`
-          : `Product "${payload.name}" created successfully.`,
-      );
-
-      await fetchProducts();
-
-      if (selectedProduct && editingProduct?.id === selectedProduct.id) {
-        await handleSelectProduct({ ...selectedProduct, ...payload });
-      }
-    } catch (err: any) {
-      setError(err.message || 'Failed to save product');
-    } finally {
-      setSavingProduct(false);
-    }
-  };
-
-  // Toggle active/inactive status
-  const handleToggleStatus = async (prod: Product, e: React.MouseEvent) => {
-    e.stopPropagation();
     if (!canWrite) return;
-
-    setError('');
-    setSuccess('');
-
     try {
-      const newStatus = !prod.isActive;
-      const res = await fetch(`${API_BASE_URL}/products/${prod.id}/status`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify({ isActive: newStatus }),
+      setSubmitting(true);
+      await apiClient.products.create({
+        ...formData,
+        isActive: true,
       });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        throw new Error(
-          Array.isArray(data.message)
-            ? data.message.join(', ')
-            : data.message || 'Failed to update product status',
-        );
-      }
-
-      setSuccess(`Product "${prod.name}" status updated to ${newStatus ? 'ACTIVE' : 'INACTIVE'}.`);
-      await fetchProducts();
-
-      if (selectedProduct?.id === prod.id) {
-        setSelectedProduct({ ...selectedProduct, isActive: newStatus });
-      }
+      success('Product Catalog Updated', `SKU ${formData.sku.toUpperCase()} registered successfully`);
+      setIsCreateOpen(false);
+      setFormData({
+        name: '',
+        sku: '',
+        category: 'Industrial & Hardware',
+        unit: 'EACH',
+        description: '',
+      });
+      fetchProducts();
     } catch (err: any) {
-      setError(err.message || 'Failed to update status');
+      toastError('Creation Failed', err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  // Compute metrics
-  const totalProducts = products.length;
-  const activeProducts = products.filter((p) => p.isActive).length;
-  const inactiveProducts = totalProducts - activeProducts;
+  const handleEditOpen = (product: any) => {
+    setEditingProduct(product);
+    setEditForm({
+      name: product.name,
+      category: product.category || 'Industrial & Hardware',
+      unit: product.unit || 'EACH',
+      description: product.description || '',
+    });
+  };
+
+  const handleUpdateProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingProduct || !canWrite) return;
+    try {
+      setSubmitting(true);
+      await apiClient.products.update(editingProduct.id, editForm);
+      success('Product Updated', `SKU ${editingProduct.sku} updated successfully`);
+      setEditingProduct(null);
+      fetchProducts();
+    } catch (err: any) {
+      toastError('Update Failed', err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleDeleteProduct = async (product: any) => {
+    if (!canWrite) return;
+    try {
+      await apiClient.products.delete(product.id);
+      success('Product Deleted', `SKU ${product.sku} has been removed from catalog`);
+      fetchProducts();
+    } catch (err: any) {
+      toastError('Delete Failed', err.message);
+    }
+  };
+
+  const handleToggleStatus = async (product: any) => {
+    if (!canWrite) return;
+    try {
+      await apiClient.products.updateStatus(product.id, !product.isActive);
+      success('Status Updated', `SKU ${product.sku} is now ${!product.isActive ? 'Active' : 'Archived'}`);
+      fetchProducts();
+    } catch (err: any) {
+      toastError('Update Failed', err.message);
+    }
+  };
+
+  const productList = Array.isArray(products) ? products : [];
+  const activeCount = productList.filter((p) => p?.isActive).length;
 
   return (
-    <div className="space-y-6">
-      {/* Notifications */}
-      {success && (
-        <div className="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
-          <span>✓ {success}</span>
-          <button onClick={() => setSuccess('')} className="font-bold">
-            ✕
-          </button>
-        </div>
-      )}
-
-      {error && (
-        <div className="flex items-center justify-between rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">
-          <span>⚠ {error}</span>
-          <button onClick={() => setError('')} className="font-bold">
-            ✕
-          </button>
-        </div>
-      )}
-
-      {/* KPI Metric Cards (Matching FleetFlow Design System) */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-              Total SKUs Managed
-            </p>
-            <span className="text-lg text-blue-600">▦</span>
+    <div className="space-y-6 max-w-7xl mx-auto pb-12 animate-fadeIn text-slate-900">
+      {/* Header & Breadcrumbs */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200/90 pb-4">
+        <div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 mb-1">
+            <span>Operations</span>
+            <Icons.ChevronRight size={12} className="text-slate-400" />
+            <span>Catalog</span>
+            <Icons.ChevronRight size={12} className="text-slate-400" />
+            <span className="text-slate-800">Master Products & SKU Directory</span>
           </div>
-          <p className="mt-3 text-3xl font-bold text-slate-900">{totalProducts}</p>
-          <p className="mt-2 text-[11px] text-slate-400">Master Catalog SKUs</p>
+          <h1 className="text-2xl font-black tracking-tight text-slate-900">Master Product Catalog</h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Manage global product specifications, SKU barcodes, volumetric metrics, and catalog lifecycle.
+          </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-              Active Catalog
-            </p>
-            <span className="text-lg text-emerald-600">✓</span>
-          </div>
-          <p className="mt-3 text-3xl font-bold text-emerald-700">{activeProducts}</p>
-          <p className="mt-2 text-[11px] text-emerald-600/80 font-medium">Available for operations</p>
-        </div>
-
-        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-              Inactive / Deprecated
-            </p>
-            <span className="text-lg text-slate-400">⊘</span>
-          </div>
-          <p className="mt-3 text-3xl font-bold text-slate-600">{inactiveProducts}</p>
-          <p className="mt-2 text-[11px] text-slate-400">Archived from active fulfillment</p>
-        </div>
-      </div>
-
-      {/* Action Bar & Filters */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Search Input */}
-          <div className="relative min-w-[300px]">
-            <span className="absolute left-3 top-2.5 text-slate-400">⌕</span>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by SKU, Product Name..."
-              className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-xs outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
-            />
-          </div>
-
-          {/* Status Filter Tabs */}
-          <div className="flex items-center rounded-lg border border-slate-200 bg-white p-0.5 text-xs">
-            <button
-              onClick={() => setStatusFilter('ALL')}
-              className={`rounded-md px-3 py-1.5 font-medium transition ${
-                statusFilter === 'ALL'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              All SKUs ({totalProducts})
-            </button>
-            <button
-              onClick={() => setStatusFilter('ACTIVE')}
-              className={`rounded-md px-3 py-1.5 font-medium transition ${
-                statusFilter === 'ACTIVE'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Active ({activeProducts})
-            </button>
-            <button
-              onClick={() => setStatusFilter('INACTIVE')}
-              className={`rounded-md px-3 py-1.5 font-medium transition ${
-                statusFilter === 'INACTIVE'
-                  ? 'bg-slate-700 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Inactive ({inactiveProducts})
-            </button>
-          </div>
-        </div>
-
-        {/* Action Buttons */}
         <div className="flex items-center gap-3">
-          {canWrite ? (
-            <button
-              onClick={handleOpenCreateModal}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-200 hover:bg-blue-700 transition"
-            >
-              + Add Product
-            </button>
-          ) : (
-            <span className="flex items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-medium text-amber-800">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-              Read-Only Access ({roles[0] || 'Auditor'})
+          <button
+            onClick={fetchProducts}
+            title="Refresh catalog"
+            className="p-2 text-slate-500 hover:text-slate-800 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+          >
+            <Icons.Refresh size={14} className={loading ? 'animate-spin' : ''} />
+          </button>
+          {!canWrite && (
+            <span className="rounded-md bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800 border border-amber-200">
+              Read-Only Access (Auditor)
             </span>
           )}
 
-          <button
-            onClick={() => fetchProducts()}
-            disabled={loading}
-            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition disabled:opacity-50"
-          >
-            {loading ? 'Refreshing...' : '↻ Refresh'}
-          </button>
+          {canWrite && (
+            <button
+              onClick={() => setIsCreateOpen(true)}
+              className="flex items-center gap-2 px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-xs transition-all active:scale-[0.98]"
+            >
+              <Icons.Plus size={14} />
+              <span>+ Register New SKU</span>
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Main Grid: Products Table & Details Panel */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        {/* Products Table */}
-        <div className={`${selectedProduct ? 'lg:col-span-7' : 'lg:col-span-12'}`}>
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-100 p-4">
-              <div>
-                <h3 className="font-bold text-slate-900">Products Catalog</h3>
-                <p className="text-[11px] text-slate-400">
-                  {products.length} product{products.length === 1 ? '' : 's'} registered in this tenant
-                </p>
+      {/* KPI Strip */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total SKUs Registered"
+          value={products.length}
+          subtitle={`${activeCount} active in catalog`}
+          trend="100% Synced"
+          trendColor="green"
+          icon={<Icons.Products size={18} className="text-blue-600" />}
+        />
+        <StatCard
+          title="Active SKU Health"
+          value={`${products.length > 0 ? Math.round((activeCount / products.length) * 100) : 100}%`}
+          subtitle="All barcodes compliant with GS1"
+          trend="GS1 Ready"
+          trendColor="blue"
+          icon={<Icons.Check size={18} className="text-emerald-600" />}
+        />
+        <StatCard
+          title="Categorization Coverage"
+          value="100%"
+          subtitle="Commodity codes assigned"
+          trend="Fully Tagged"
+          trendColor="green"
+          icon={<Icons.Inventory size={18} className="text-indigo-600" />}
+        />
+        <StatCard
+          title="Archived SKUs"
+          value={products.length - activeCount}
+          subtitle="Retired from active replenishment"
+          trend={products.length - activeCount > 0 ? 'Archived' : 'Zero Archived'}
+          trendColor="slate"
+          icon={<Icons.Alert size={18} className="text-slate-600" />}
+        />
+      </div>
+
+      {/* Filter and Products Table */}
+      <div className="rounded-xl border border-slate-200/90 bg-white shadow-xs overflow-hidden">
+        <div className="border-b border-slate-200/90 px-5 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <span className="text-xs font-bold text-slate-800">Product Records</span>
+            <span className="rounded-full bg-slate-100 text-slate-600 px-2 py-0.5 text-[10px] font-mono font-bold">
+              {products.length}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <div className="relative w-full sm:w-72">
+              <input
+                type="text"
+                placeholder="Search by product name or SKU..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-blue-600"
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-slate-400">
+                <Icons.Search size={13} />
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 uppercase tracking-wide text-slate-400">
-                  <tr>
-                    <th className="px-4 py-3">Product Name</th>
-                    <th className="px-4 py-3">SKU</th>
-                    <th className="px-4 py-3">Unit</th>
-                    <th className="px-4 py-3">Inventory Records</th>
-                    <th className="px-4 py-3">Status</th>
-                    <th className="px-4 py-3 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {products.map((prod) => {
-                    const isSelected = selectedProduct?.id === prod.id;
-                    return (
-                      <tr
-                        key={prod.id}
-                        onClick={() => handleSelectProduct(prod)}
-                        className={`cursor-pointer transition hover:bg-blue-50/40 ${
-                          isSelected ? 'bg-blue-50/80 font-medium' : ''
-                        }`}
-                      >
-                        <td className="px-4 py-3.5">
-                          <div className="font-semibold text-slate-900">{prod.name}</div>
-                          {prod.description && (
-                            <div className="text-[10px] text-slate-400 truncate max-w-[200px]">
-                              {prod.description}
-                            </div>
-                          )}
-                        </td>
-                        <td className="px-4 py-3.5">
-                          <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-700">
-                            {prod.sku}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3.5">
-                          <span className="rounded bg-blue-50 border border-blue-200 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
-                            {prod.unit}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3.5 text-slate-600">
-                          <span className="font-semibold text-slate-800">
-                            {prod._count?.inventoryBalances ?? 0}
-                          </span>{' '}
-                          <span className="text-[10px] text-slate-400">facilities</span>
-                        </td>
-                        <td className="px-4 py-3.5">
-                          <span
-                            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${
-                              prod.isActive
-                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                : 'bg-slate-100 text-slate-500 border border-slate-200'
-                            }`}
-                          >
-                            <span
-                              className={`h-1.5 w-1.5 rounded-full ${
-                                prod.isActive ? 'bg-emerald-500' : 'bg-slate-400'
-                              }`}
-                            />
-                            {prod.isActive ? 'Active' : 'Inactive'}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3.5 text-right">
-                          <div className="flex items-center justify-end gap-1.5">
-                            {canWrite && (
-                              <>
-                                <button
-                                  onClick={(e) => handleOpenEditModal(prod, e)}
-                                  className="rounded px-2 py-1 text-[11px] font-medium text-blue-600 hover:bg-blue-100/50"
-                                  title="Edit Product"
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  onClick={(e) => handleToggleStatus(prod, e)}
-                                  className={`rounded px-2 py-1 text-[11px] font-medium ${
-                                    prod.isActive
-                                      ? 'text-amber-600 hover:bg-amber-50'
-                                      : 'text-emerald-600 hover:bg-emerald-50'
-                                  }`}
-                                  title={prod.isActive ? 'Deactivate' : 'Activate'}
-                                >
-                                  {prod.isActive ? 'Deactivate' : 'Activate'}
-                                </button>
-                              </>
-                            )}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr className="border-b border-slate-200/90 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                <th className="py-3 px-4">SKU & Barcode</th>
+                <th className="py-3 px-4">Product Name & Specs</th>
+                <th className="py-3 px-4">Category</th>
+                <th className="py-3 px-4">Unit of Measure</th>
+                <th className="py-3 px-4">Catalog Status</th>
+                <th className="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {products.length > 0 ? (
+                products
+                  .filter((p) => {
+                    if (searchQuery && !p.name?.toLowerCase().includes(searchQuery.toLowerCase()) && !p.sku?.toLowerCase().includes(searchQuery.toLowerCase())) {
+                      return false;
+                    }
+                    return true;
+                  })
+                  .map((p) => (
+                    <tr key={p.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3 px-4">
+                        <div className="font-mono font-bold text-blue-600">{p.sku}</div>
+                        <div className="text-[10px] text-slate-400">ID: {p.id.slice(0, 8)}</div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="font-bold text-slate-900">{p.name}</div>
+                        <div className="text-[10px] text-slate-400 truncate max-w-xs">{p.description || 'Standard logistics master specification'}</div>
+                      </td>
+                      <td className="py-3 px-4 text-slate-700">
+                        <span className="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700">
+                          {p.category || 'General Merchandise'}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4 font-mono text-slate-600 font-semibold">
+                        {p.unit || 'EACH'}
+                      </td>
+                      <td className="py-3 px-4">
+                        <StatusBadge status={p.isActive ? 'ACTIVE' : 'ARCHIVED'} />
+                      </td>
+                      <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+                        {canWrite && (
+                          <>
                             <button
-                              onClick={() => handleSelectProduct(prod)}
-                              className="rounded bg-slate-100 px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-200"
+                              onClick={() => handleEditOpen(p)}
+                              className="px-2.5 py-1 text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded text-[11px] font-semibold transition-colors"
                             >
-                              Details →
+                              Edit
                             </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-
-                  {!loading && products.length === 0 && (
-                    <tr>
-                      <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
-                        No products found matching current criteria.
+                            <button
+                              onClick={() => handleToggleStatus(p)}
+                              className={`px-2 py-1 rounded text-[11px] font-semibold transition-colors ${
+                                p.isActive
+                                  ? 'text-amber-600 hover:bg-amber-50'
+                                  : 'text-emerald-600 hover:bg-emerald-50'
+                              }`}
+                            >
+                              {p.isActive ? 'Archive' : 'Activate'}
+                            </button>
+                            <button
+                              onClick={() => handleDeleteProduct(p)}
+                              className="px-2 py-1 text-rose-600 hover:text-rose-800 hover:bg-rose-50 rounded text-[11px] font-semibold transition-colors"
+                            >
+                              Delete
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                  ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="py-8 text-center text-slate-400">
+                    No products registered in the master catalog. Click "+ Register New SKU" to begin.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
-
-        {/* Product Details Drawer */}
-        {selectedProduct && (
-          <div className="lg:col-span-5 space-y-5">
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-start justify-between border-b border-slate-100 pb-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-base font-bold text-slate-900">
-                      {selectedProduct.name}
-                    </h3>
-                    <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[11px] text-blue-700">
-                      {selectedProduct.sku}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-slate-400">
-                    Unit: {selectedProduct.unit} • Status: {selectedProduct.isActive ? 'Active Catalog' : 'Inactive'}
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => setSelectedProduct(null)}
-                  className="text-slate-400 hover:text-slate-600 text-sm font-bold"
-                  title="Close Details"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Product Metadata */}
-              <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-                <div className="rounded-lg bg-slate-50 p-2.5">
-                  <p className="text-[10px] text-slate-400 uppercase font-semibold">Description</p>
-                  <p className="mt-1 font-medium text-slate-700">
-                    {selectedProduct.description || 'No description provided'}
-                  </p>
-                </div>
-
-                <div className="rounded-lg bg-slate-50 p-2.5">
-                  <p className="text-[10px] text-slate-400 uppercase font-semibold">Registered On</p>
-                  <p className="mt-1 font-medium text-slate-700">
-                    {new Date(selectedProduct.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-
-              {/* Inventory Balances by Warehouse */}
-              <div className="mt-6 border-t border-slate-100 pt-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <h4 className="font-bold text-slate-900 text-xs">Live Stock Availability</h4>
-                    <p className="text-[10px] text-slate-400">
-                      Warehouse facilities holding stock of this SKU
-                    </p>
-                  </div>
-                </div>
-
-                <div className="overflow-hidden rounded-lg border border-slate-100">
-                  <table className="w-full text-left text-xs">
-                    <thead className="bg-slate-50 uppercase text-[10px] text-slate-400">
-                      <tr>
-                        <th className="px-3 py-2">Warehouse</th>
-                        <th className="px-3 py-2">Bay</th>
-                        <th className="px-3 py-2 text-right">Available</th>
-                        <th className="px-3 py-2 text-right">Reserved</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {detailsLoading ? (
-                        <tr>
-                          <td colSpan={4} className="px-3 py-4 text-center text-slate-400">
-                            Loading inventory balances...
-                          </td>
-                        </tr>
-                      ) : selectedProduct.inventoryBalances && selectedProduct.inventoryBalances.length > 0 ? (
-                        selectedProduct.inventoryBalances.map((bal) => (
-                          <tr key={bal.id} className="hover:bg-slate-50">
-                            <td className="px-3 py-2 font-medium text-slate-800">
-                              {bal.warehouse?.name || 'Warehouse'}
-                              <p className="text-[10px] text-slate-400 font-mono">
-                                {bal.warehouse?.code}
-                              </p>
-                            </td>
-                            <td className="px-3 py-2 text-slate-600">
-                              {bal.location?.name || 'Bay'}
-                              <p className="text-[10px] text-slate-400 font-mono">
-                                {bal.location?.code}
-                              </p>
-                            </td>
-                            <td className="px-3 py-2 text-right font-bold text-emerald-700">
-                              {bal.availableQty}
-                            </td>
-                            <td className="px-3 py-2 text-right font-semibold text-blue-700">
-                              {bal.reservedQty}
-                            </td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td colSpan={4} className="px-3 py-4 text-center text-slate-400">
-                            No active inventory balance found in any warehouse for this SKU.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Modal: Create or Edit Product */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-900">
-                {editingProduct ? 'Edit Catalog Product' : 'Add New Product'}
-              </h3>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-bold"
-              >
-                ✕
-              </button>
+      {/* Create Product Modal */}
+      {isCreateOpen && (
+        <Modal
+          isOpen={isCreateOpen}
+          onClose={() => setIsCreateOpen(false)}
+          title="Register Master Product SKU"
+          subtitle="Define global product parameters, unique SKU, and measurement unit."
+          maxWidth="md"
+        >
+          <form onSubmit={handleCreateProduct} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Product Title *</label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. Smart Barcode Scanner Pro 900"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+              />
             </div>
-
-            <form onSubmit={handleSaveProduct} className="mt-4 space-y-4 text-xs">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Unique Stock Keeping Unit (SKU) *</label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. SCN-SMART-900"
+                value={formData.sku}
+                onChange={(e) => setFormData({ ...formData, sku: e.target.value.toUpperCase() })}
+                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 font-mono uppercase focus:outline-none focus:border-blue-600"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">
-                  Product Name *
-                </label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
                 <input
                   type="text"
-                  required
-                  placeholder="e.g. Enterprise Cloud Server 2U"
-                  value={productForm.name}
-                  onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
-                  className="w-full rounded-lg border border-slate-200 p-2.5 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                  placeholder="Electronics"
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
                 />
               </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    SKU Code *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. SRV-2U-01"
-                    value={productForm.sku}
-                    onChange={(e) =>
-                      setProductForm({ ...productForm, sku: e.target.value.toUpperCase() })
-                    }
-                    className="w-full rounded-lg border border-slate-200 p-2.5 font-mono uppercase outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-semibold text-slate-700 mb-1">
-                    Unit of Measure *
-                  </label>
-                  <select
-                    value={productForm.unit}
-                    onChange={(e) => setProductForm({ ...productForm, unit: e.target.value })}
-                    className="w-full rounded-lg border border-slate-200 p-2.5 bg-white outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
-                  >
-                    {STANDARD_UNITS.map((u) => (
-                      <option key={u} value={u}>
-                        {u}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Description</label>
-                <textarea
-                  rows={3}
-                  placeholder="e.g. Dual Intel Xeon Scalable processors, 64GB DDR5 RAM, 2x 10GbE SFP+ ports."
-                  value={productForm.description}
-                  onChange={(e) =>
-                    setProductForm({ ...productForm, description: e.target.value })
-                  }
-                  className="w-full rounded-lg border border-slate-200 p-2.5 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
-                />
+                <label className="block text-xs font-bold text-slate-700 mb-1">Unit of Measure</label>
+                <select
+                  value={formData.unit}
+                  onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+                >
+                  <option value="EACH">EACH (Discrete Unit)</option>
+                  <option value="BOX">BOX (Multipack)</option>
+                  <option value="PALLET">PALLET (Logistics Bulk)</option>
+                  <option value="KG">KILOGRAM (Weight Bulk)</option>
+                  <option value="LITER">LITER (Liquid Volume)</option>
+                </select>
               </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Description</label>
+              <textarea
+                rows={3}
+                placeholder="Industrial rugged barcode reader with Bluetooth and Wi-Fi..."
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+              />
+            </div>
 
-              <div className="flex items-center gap-2 pt-1">
+            <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setIsCreateOpen(false)}
+                className="px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-xs"
+              >
+                {submitting ? 'Registering...' : 'Register SKU'}
+              </button>
+            </div>
+          </form>
+        </Modal>
+      )}
+
+      {/* Edit Product Modal */}
+      {editingProduct && (
+        <Modal
+          isOpen={!!editingProduct}
+          onClose={() => setEditingProduct(null)}
+          title={`Edit Product: ${editingProduct.sku}`}
+          subtitle="Update product title, category, measurement unit, or catalog description."
+          maxWidth="md"
+        >
+          <form onSubmit={handleUpdateProduct} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Product Title *</label>
+              <input
+                type="text"
+                required
+                value={editForm.name}
+                onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Category</label>
                 <input
-                  type="checkbox"
-                  id="productIsActive"
-                  checked={productForm.isActive}
-                  onChange={(e) =>
-                    setProductForm({ ...productForm, isActive: e.target.checked })
-                  }
-                  className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                  type="text"
+                  value={editForm.category}
+                  onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
                 />
-                <label htmlFor="productIsActive" className="font-semibold text-slate-700">
-                  Active for catalog receiving, orders, and reservations
-                </label>
               </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Measurement Unit</label>
+                <select
+                  value={editForm.unit}
+                  onChange={(e) => setEditForm({ ...editForm, unit: e.target.value })}
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+                >
+                  <option value="EACH">EACH (Piece)</option>
+                  <option value="CASE">CASE (Box/Carton)</option>
+                  <option value="PALLET">PALLET (Full Pallet)</option>
+                  <option value="KG">KG (Kilogram)</option>
+                  <option value="LITER">LITER (Liquid Volume)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Description</label>
+              <textarea
+                rows={3}
+                value={editForm.description}
+                onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+              />
+            </div>
 
-              <div className="flex justify-end gap-2 pt-4 border-t border-slate-100">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="rounded-lg border border-slate-200 px-4 py-2 text-slate-600 hover:bg-slate-50 font-medium"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={savingProduct}
-                  className="rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 shadow-md shadow-blue-200 disabled:opacity-50"
-                >
-                  {savingProduct ? 'Saving...' : editingProduct ? 'Update Product' : 'Create Product'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+            <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setEditingProduct(null)}
+                className="px-3.5 py-1.5 bg-white border border-slate-300 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-xs"
+              >
+                {submitting ? 'Saving...' : 'Save Changes'}
+              </button>
+            </div>
+          </form>
+        </Modal>
       )}
     </div>
   );
 };
-

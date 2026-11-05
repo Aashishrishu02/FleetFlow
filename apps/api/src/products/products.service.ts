@@ -42,6 +42,7 @@ export class ProductsService {
         name: dto.name.trim(),
         sku,
         description: dto.description?.trim() || null,
+        category: dto.category?.trim() || 'General',
         unit: (dto.unit?.trim().toUpperCase()) || 'UNIT',
         isActive: dto.isActive !== undefined ? dto.isActive : true,
       },
@@ -199,6 +200,7 @@ export class ProductsService {
         ...(dto.name !== undefined ? { name: dto.name.trim() } : {}),
         ...(dto.sku !== undefined ? { sku: dto.sku.trim().toUpperCase() } : {}),
         ...(dto.description !== undefined ? { description: dto.description?.trim() || null } : {}),
+        ...(dto.category !== undefined ? { category: dto.category?.trim() || null } : {}),
         ...(dto.unit !== undefined ? { unit: dto.unit.trim().toUpperCase() } : {}),
         ...(dto.isActive !== undefined ? { isActive: dto.isActive } : {}),
       },
@@ -247,5 +249,45 @@ export class ProductsService {
         },
       },
     });
+  }
+
+  /**
+   * Delete product safely. Blocks deletion if product has active inventory balances, orders or shipments.
+   */
+  async deleteProduct(organizationId: string, id: string) {
+    await this.findOne(organizationId, id);
+
+    const activeBalance = await this.prisma.inventoryBalance.findFirst({
+      where: {
+        productId: id,
+        OR: [
+          { availableQty: { gt: 0 } },
+          { reservedQty: { gt: 0 } },
+          { damagedQty: { gt: 0 } },
+        ],
+      },
+    });
+
+    if (activeBalance) {
+      throw new BadRequestException(
+        'Cannot delete product with active inventory balances. Please adjust or issue stock first, or deactivate the product.',
+      );
+    }
+
+    const orderItem = await this.prisma.orderItem.findFirst({
+      where: { productId: id },
+    });
+
+    if (orderItem) {
+      throw new BadRequestException(
+        'Cannot delete product referenced in customer orders. Deactivate the product to prevent future ordering.',
+      );
+    }
+
+    await this.prisma.product.delete({
+      where: { id },
+    });
+
+    return { message: 'Product deleted successfully' };
   }
 }

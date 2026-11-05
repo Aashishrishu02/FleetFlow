@@ -10,6 +10,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 
 import { InventoryService } from './inventory.service.js';
 import { ReceiveStockDto } from './dto/receive-stock.dto.js';
+import { IssueStockDto } from './dto/issue-stock.dto.js';
 import { ReserveStockDto } from './dto/reserve-stock.dto.js';
 import { ReleaseStockDto } from './dto/release-stock.dto.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
@@ -48,6 +49,23 @@ export class InventoryController {
     return this.inventoryService.receiveStock(dto);
   }
 
+  // Issue Stock (Outbound / Dispatch)
+  @Post('issue')
+  @RequirePermissions(Permission.INVENTORY_ISSUE)
+  @ApiOperation({ summary: 'Issue / dispatch stock out of warehouse' })
+  @ApiResponse({ status: 201, description: 'Stock issued successfully' })
+  @ApiResponse({ status: 400, description: 'Insufficient stock or invalid quantity' })
+  @ApiResponse({ status: 401, description: 'Unauthorized — missing or invalid JWT' })
+  @ApiResponse({ status: 403, description: 'Forbidden — insufficient role permissions or cross-tenant access' })
+  @ApiResponse({ status: 404, description: 'Warehouse, location, or product not found' })
+  async issueStock(
+    @Body() dto: IssueStockDto,
+    @CurrentTenant() tenant: TenantContext,
+  ) {
+    dto.organizationId = tenant.organizationId;
+    return this.inventoryService.issueStock(dto);
+  }
+
   // Reserve Stock
   @Post('reserve')
   @RequirePermissions(Permission.INVENTORY_RESERVE)
@@ -78,6 +96,46 @@ export class InventoryController {
   ) {
     dto.organizationId = tenant.organizationId;
     return this.inventoryService.releaseStock(dto);
+  }
+
+  // Adjust Stock (Damage / Cycle Count)
+  @Post('adjustments')
+  @RequirePermissions(Permission.INVENTORY_ADJUST)
+  @ApiOperation({ summary: 'Adjust stock quantities for cycle counts or damage quarantine' })
+  async adjustStock(
+    @CurrentTenant() tenant: TenantContext,
+    @Body()
+    dto: {
+      warehouseId: string;
+      locationId: string;
+      productId: string;
+      quantity: number;
+      reason: 'RECONCILIATION' | 'DAMAGE';
+      notes?: string;
+      idempotencyKey: string;
+    },
+  ) {
+    return this.inventoryService.adjustStock(tenant.organizationId, dto);
+  }
+
+  // Transfer Stock
+  @Post('transfers')
+  @RequirePermissions(Permission.INVENTORY_TRANSFER)
+  @ApiOperation({ summary: 'Transfer inventory between warehouses or storage locations' })
+  async transferStock(
+    @CurrentTenant() tenant: TenantContext,
+    @Body()
+    dto: {
+      fromWarehouseId: string;
+      fromLocationId: string;
+      toWarehouseId: string;
+      toLocationId: string;
+      productId: string;
+      quantity: number;
+      idempotencyKey: string;
+    },
+  ) {
+    return this.inventoryService.transferStock(tenant.organizationId, dto);
   }
 
   // ==========================================

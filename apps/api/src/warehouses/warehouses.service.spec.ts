@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { ConflictException, ForbiddenException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { WarehousesService } from './warehouses.service.js';
 
 describe('WarehousesService', () => {
@@ -19,6 +19,7 @@ describe('WarehousesService', () => {
         findMany: vi.fn(),
         create: vi.fn(),
         update: vi.fn(),
+        delete: vi.fn(),
       },
       storageLocation: {
         findUnique: vi.fn(),
@@ -26,6 +27,11 @@ describe('WarehousesService', () => {
         findMany: vi.fn(),
         create: vi.fn(),
         update: vi.fn(),
+        delete: vi.fn(),
+        deleteMany: vi.fn(),
+      },
+      inventoryBalance: {
+        findFirst: vi.fn(),
       },
     };
 
@@ -227,6 +233,76 @@ describe('WarehousesService', () => {
 
       const result = await service.findAllLocations(orgA, warehouseId);
       expect(result).toHaveLength(1);
+    });
+  });
+
+  describe('deleteWarehouse & safe deletion', () => {
+    it('should block deletion if warehouse has active inventory balances', async () => {
+      mockPrisma.warehouse.findUnique.mockResolvedValueOnce({
+        id: warehouseId,
+        organizationId: orgA,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce({
+        id: 'balance-1',
+        availableQty: 10,
+        reservedQty: 0,
+      });
+
+      await expect(service.deleteWarehouse(orgA, warehouseId)).rejects.toThrow(
+        BadRequestException,
+      );
+    });
+
+    it('should successfully delete warehouse when no active inventory exists', async () => {
+      mockPrisma.warehouse.findUnique.mockResolvedValueOnce({
+        id: warehouseId,
+        organizationId: orgA,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.storageLocation.deleteMany.mockResolvedValueOnce({ count: 2 });
+      mockPrisma.warehouse.delete.mockResolvedValueOnce({ id: warehouseId });
+
+      const res = await service.deleteWarehouse(orgA, warehouseId);
+      expect(res.message).toContain('deleted successfully');
+      expect(mockPrisma.warehouse.delete).toHaveBeenCalledWith({ where: { id: warehouseId } });
+    });
+  });
+
+  describe('deleteLocation & safe deletion', () => {
+    it('should block deletion if location has active inventory balance', async () => {
+      mockPrisma.warehouse.findUnique.mockResolvedValueOnce({
+        id: warehouseId,
+        organizationId: orgA,
+      });
+      mockPrisma.storageLocation.findUnique.mockResolvedValueOnce({
+        id: locationId,
+        warehouseId,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce({
+        id: 'balance-loc',
+        availableQty: 5,
+      });
+
+      await expect(
+        service.deleteLocation(orgA, warehouseId, locationId),
+      ).rejects.toThrow(BadRequestException);
+    });
+
+    it('should successfully delete location when no active inventory exists', async () => {
+      mockPrisma.warehouse.findUnique.mockResolvedValueOnce({
+        id: warehouseId,
+        organizationId: orgA,
+      });
+      mockPrisma.storageLocation.findUnique.mockResolvedValueOnce({
+        id: locationId,
+        warehouseId,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.storageLocation.delete.mockResolvedValueOnce({ id: locationId });
+
+      const res = await service.deleteLocation(orgA, warehouseId, locationId);
+      expect(res.message).toContain('deleted successfully');
+      expect(mockPrisma.storageLocation.delete).toHaveBeenCalledWith({ where: { id: locationId } });
     });
   });
 });

@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type Organization = Prisma.OrganizationModel
 /**
+ * Model OrganizationSettings
+ * 
+ */
+export type OrganizationSettings = Prisma.OrganizationSettingsModel
+/**
  * Model User
  * 
  */
@@ -96,3 +101,118 @@ export type InventoryReservation = Prisma.InventoryReservationModel
  * 
  */
 export type InventoryMovement = Prisma.InventoryMovementModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model DeliveryPartner
+ * 
+ */
+export type DeliveryPartner = Prisma.DeliveryPartnerModel
+/**
+ * Model Vehicle
+ * 
+ */
+export type Vehicle = Prisma.VehicleModel
+/**
+ * Model Shipment
+ * 
+ */
+export type Shipment = Prisma.ShipmentModel
+/**
+ * Model ShipmentItem
+ * 
+ */
+export type ShipmentItem = Prisma.ShipmentItemModel
+/**
+ * Model TrackingEvent
+ * 
+ */
+export type TrackingEvent = Prisma.TrackingEventModel
+/**
+ * Model ShipmentAssignment
+ * 
+ */
+export type ShipmentAssignment = Prisma.ShipmentAssignmentModel
+/**
+ * Model Return
+ * 
+ */
+export type Return = Prisma.ReturnModel
+/**
+ * Model ReturnItem
+ * 
+ */
+export type ReturnItem = Prisma.ReturnItemModel
+/**
+ * Model PricingRule
+ * 
+ */
+export type PricingRule = Prisma.PricingRuleModel
+/**
+ * Model ShippingQuote
+ * 
+ */
+export type ShippingQuote = Prisma.ShippingQuoteModel
+/**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model CreditNote
+ * 
+ */
+export type CreditNote = Prisma.CreditNoteModel
+/**
+ * Model Refund
+ * 
+ */
+export type Refund = Prisma.RefundModel
+/**
+ * Model PartnerPayable
+ * 
+ */
+export type PartnerPayable = Prisma.PartnerPayableModel
+/**
+ * Model FinancialEntry
+ * 
+ */
+export type FinancialEntry = Prisma.FinancialEntryModel
+/**
+ * Model FulfillmentWorkflow
+ * 
+ */
+export type FulfillmentWorkflow = Prisma.FulfillmentWorkflowModel
+/**
+ * Model FulfillmentStep
+ * 
+ */
+export type FulfillmentStep = Prisma.FulfillmentStepModel
+/**
+ * Model OutboxEvent
+ * 
+ */
+export type OutboxEvent = Prisma.OutboxEventModel
+/**
+ * Model ProcessedEvent
+ * 
+ */
+export type ProcessedEvent = Prisma.ProcessedEventModel
+/**
+ * Model ApiKey
+ * 
+ */
+export type ApiKey = Prisma.ApiKeyModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   ForbiddenException,
   Injectable,
@@ -233,6 +234,7 @@ export class WarehousesService {
         warehouseId,
         name: dto.name.trim(),
         code,
+        type: dto.type?.trim().toUpperCase() || 'BIN',
       },
       include: {
         _count: {
@@ -335,6 +337,7 @@ export class WarehousesService {
       data: {
         ...(dto.name !== undefined ? { name: dto.name.trim() } : {}),
         ...(dto.code !== undefined ? { code: dto.code.trim().toUpperCase() } : {}),
+        ...(dto.type !== undefined ? { type: dto.type.trim().toUpperCase() } : {}),
       },
       include: {
         _count: {
@@ -344,6 +347,72 @@ export class WarehousesService {
         },
       },
     });
+  }
+
+  /**
+   * Delete warehouse safely. Blocks deletion if non-zero inventory balances exist.
+   */
+  async deleteWarehouse(organizationId: string, id: string) {
+    await this.findOne(organizationId, id);
+
+    const activeBalance = await this.prisma.inventoryBalance.findFirst({
+      where: {
+        warehouseId: id,
+        OR: [
+          { availableQty: { gt: 0 } },
+          { reservedQty: { gt: 0 } },
+          { damagedQty: { gt: 0 } },
+          { inTransitQty: { gt: 0 } },
+        ],
+      },
+    });
+
+    if (activeBalance) {
+      throw new BadRequestException(
+        'Cannot delete warehouse with active inventory balances. Please transfer or adjust stock first or deactivate the facility.',
+      );
+    }
+
+    // Cascade delete any remaining empty locations & balances, then warehouse
+    await this.prisma.storageLocation.deleteMany({
+      where: { warehouseId: id },
+    });
+
+    await this.prisma.warehouse.delete({
+      where: { id },
+    });
+
+    return { message: 'Warehouse deleted successfully' };
+  }
+
+  /**
+   * Delete storage location safely. Blocks deletion if non-zero inventory balance exists.
+   */
+  async deleteLocation(organizationId: string, warehouseId: string, locationId: string) {
+    await this.findOneLocation(organizationId, warehouseId, locationId);
+
+    const activeBalance = await this.prisma.inventoryBalance.findFirst({
+      where: {
+        locationId,
+        OR: [
+          { availableQty: { gt: 0 } },
+          { reservedQty: { gt: 0 } },
+          { damagedQty: { gt: 0 } },
+        ],
+      },
+    });
+
+    if (activeBalance) {
+      throw new BadRequestException(
+        'Cannot delete storage location with non-zero inventory balance. Please transfer or adjust stock first.',
+      );
+    }
+
+    await this.prisma.storageLocation.delete({
+      where: { id: locationId },
+    });
+
+    return { message: 'Storage location deleted successfully' };
   }
 }
 

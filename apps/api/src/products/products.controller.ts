@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -111,5 +112,21 @@ export class ProductsController {
     @Body() dto: UpdateProductStatusDto,
   ) {
     return this.productsService.updateStatus(tenant.organizationId, id, dto.isActive);
+  }
+
+  @Delete(':id')
+  @RequirePermissions(Permission.PRODUCTS_WRITE)
+  @ApiOperation({ summary: 'Delete product safely if no active inventory or orders exist' })
+  @ApiParam({ name: 'id', description: 'Product UUID' })
+  @ApiResponse({ status: 200, description: 'Product deleted successfully' })
+  @ApiResponse({ status: 400, description: 'Cannot delete product with active inventory or order references' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Product not found' })
+  async deleteProduct(
+    @CurrentTenant() tenant: TenantContext,
+    @Param('id', ParseUUIDPipe) id: string,
+  ) {
+    return this.productsService.deleteProduct(tenant.organizationId, id);
   }
 }

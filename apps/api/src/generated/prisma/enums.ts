@@ -48,7 +48,177 @@ export const MovementType = {
   TRANSFER_IN: 'TRANSFER_IN',
   TRANSFER_OUT: 'TRANSFER_OUT',
   DAMAGE: 'DAMAGE',
-  RECONCILIATION: 'RECONCILIATION'
+  RECONCILIATION: 'RECONCILIATION',
+  RESTOCK: 'RESTOCK'
 } as const
 
 export type MovementType = (typeof MovementType)[keyof typeof MovementType]
+
+
+export const OrderStatus = {
+  CREATED: 'CREATED',
+  CONFIRMED: 'CONFIRMED',
+  ALLOCATING_INVENTORY: 'ALLOCATING_INVENTORY',
+  PARTIALLY_FULFILLED: 'PARTIALLY_FULFILLED',
+  FULFILLED: 'FULFILLED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED',
+  FAILED: 'FAILED'
+} as const
+
+export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
+
+
+export const PartnerType = {
+  DEDICATED: 'DEDICATED',
+  CARRIER_3PL: 'CARRIER_3PL',
+  FREIGHT_FORWARDER: 'FREIGHT_FORWARDER',
+  LAST_MILE_COURIER: 'LAST_MILE_COURIER'
+} as const
+
+export type PartnerType = (typeof PartnerType)[keyof typeof PartnerType]
+
+
+export const PartnerStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  ONBOARDING: 'ONBOARDING'
+} as const
+
+export type PartnerStatus = (typeof PartnerStatus)[keyof typeof PartnerStatus]
+
+
+export const VehicleType = {
+  TRAILER_53FT: 'TRAILER_53FT',
+  FLATBED: 'FLATBED',
+  VAN: 'VAN',
+  BOX_TRUCK: 'BOX_TRUCK',
+  SPRINTER: 'SPRINTER',
+  CONTAINER_40FT: 'CONTAINER_40FT',
+  REEFER: 'REEFER'
+} as const
+
+export type VehicleType = (typeof VehicleType)[keyof typeof VehicleType]
+
+
+export const VehicleStatus = {
+  AVAILABLE: 'AVAILABLE',
+  ASSIGNED: 'ASSIGNED',
+  MAINTENANCE: 'MAINTENANCE',
+  OFF_DUTY: 'OFF_DUTY'
+} as const
+
+export type VehicleStatus = (typeof VehicleStatus)[keyof typeof VehicleStatus]
+
+
+export const ShipmentStatus = {
+  CREATED: 'CREATED',
+  READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  PICKED_UP: 'PICKED_UP',
+  IN_TRANSIT: 'IN_TRANSIT',
+  OUT_FOR_DELIVERY: 'OUT_FOR_DELIVERY',
+  DELIVERED: 'DELIVERED',
+  DELIVERY_FAILED: 'DELIVERY_FAILED',
+  RETURN_INITIATED: 'RETURN_INITIATED',
+  RETURN_IN_TRANSIT: 'RETURN_IN_TRANSIT',
+  RETURNED: 'RETURNED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ShipmentStatus = (typeof ShipmentStatus)[keyof typeof ShipmentStatus]
+
+
+export const ReturnStatus = {
+  REQUESTED: 'REQUESTED',
+  AUTHORIZED: 'AUTHORIZED',
+  IN_TRANSIT: 'IN_TRANSIT',
+  INSPECTED: 'INSPECTED',
+  RESTOCKED: 'RESTOCKED',
+  REJECTED: 'REJECTED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type ReturnStatus = (typeof ReturnStatus)[keyof typeof ReturnStatus]
+
+
+export const RestockDecision = {
+  RESTOCK_AVAILABLE: 'RESTOCK_AVAILABLE',
+  QUARANTINE_DAMAGED: 'QUARANTINE_DAMAGED',
+  SCRAP: 'SCRAP',
+  VENDOR_CLAIM: 'VENDOR_CLAIM'
+} as const
+
+export type RestockDecision = (typeof RestockDecision)[keyof typeof RestockDecision]
+
+
+export const PricingServiceType = {
+  STANDARD_ROAD: 'STANDARD_ROAD',
+  EXPRESS_AIR: 'EXPRESS_AIR',
+  OCEAN_FREIGHT: 'OCEAN_FREIGHT',
+  INTERMODAL: 'INTERMODAL'
+} as const
+
+export type PricingServiceType = (typeof PricingServiceType)[keyof typeof PricingServiceType]
+
+
+export const InvoiceStatus = {
+  DRAFT: 'DRAFT',
+  ISSUED: 'ISSUED',
+  PAID: 'PAID',
+  OVERDUE: 'OVERDUE',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
+
+
+export const RefundStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  PROCESSING: 'PROCESSING',
+  SETTLED: 'SETTLED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type RefundStatus = (typeof RefundStatus)[keyof typeof RefundStatus]
+
+
+export const EntryType = {
+  DEBIT: 'DEBIT',
+  CREDIT: 'CREDIT'
+} as const
+
+export type EntryType = (typeof EntryType)[keyof typeof EntryType]
+
+
+export const WorkflowStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  COMPENSATING: 'COMPENSATING',
+  COMPENSATED: 'COMPENSATED'
+} as const
+
+export type WorkflowStatus = (typeof WorkflowStatus)[keyof typeof WorkflowStatus]
+
+
+export const StepStatus = {
+  PENDING: 'PENDING',
+  RUNNING: 'RUNNING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  COMPENSATED: 'COMPENSATED'
+} as const
+
+export type StepStatus = (typeof StepStatus)[keyof typeof StepStatus]
+
+
+export const OutboxStatus = {
+  PENDING: 'PENDING',
+  PUBLISHED: 'PUBLISHED',
+  FAILED: 'FAILED'
+} as const
+
+export type OutboxStatus = (typeof OutboxStatus)[keyof typeof OutboxStatus]

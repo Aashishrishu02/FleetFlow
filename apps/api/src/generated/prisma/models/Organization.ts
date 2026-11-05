@@ -189,6 +189,21 @@ export type OrganizationWhereInput = {
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
   inventoryReservations?: Prisma.InventoryReservationListRelationFilter
   inventoryMovements?: Prisma.InventoryMovementListRelationFilter
+  settings?: Prisma.XOR<Prisma.OrganizationSettingsNullableScalarRelationFilter, Prisma.OrganizationSettingsWhereInput> | null
+  orders?: Prisma.OrderListRelationFilter
+  shipments?: Prisma.ShipmentListRelationFilter
+  returns?: Prisma.ReturnListRelationFilter
+  deliveryPartners?: Prisma.DeliveryPartnerListRelationFilter
+  pricingRules?: Prisma.PricingRuleListRelationFilter
+  shippingQuotes?: Prisma.ShippingQuoteListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  creditNotes?: Prisma.CreditNoteListRelationFilter
+  refunds?: Prisma.RefundListRelationFilter
+  partnerPayables?: Prisma.PartnerPayableListRelationFilter
+  financialEntries?: Prisma.FinancialEntryListRelationFilter
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -204,6 +219,21 @@ export type OrganizationOrderByWithRelationInput = {
   inventoryBalances?: Prisma.InventoryBalanceOrderByRelationAggregateInput
   inventoryReservations?: Prisma.InventoryReservationOrderByRelationAggregateInput
   inventoryMovements?: Prisma.InventoryMovementOrderByRelationAggregateInput
+  settings?: Prisma.OrganizationSettingsOrderByWithRelationInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
+  shipments?: Prisma.ShipmentOrderByRelationAggregateInput
+  returns?: Prisma.ReturnOrderByRelationAggregateInput
+  deliveryPartners?: Prisma.DeliveryPartnerOrderByRelationAggregateInput
+  pricingRules?: Prisma.PricingRuleOrderByRelationAggregateInput
+  shippingQuotes?: Prisma.ShippingQuoteOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  creditNotes?: Prisma.CreditNoteOrderByRelationAggregateInput
+  refunds?: Prisma.RefundOrderByRelationAggregateInput
+  partnerPayables?: Prisma.PartnerPayableOrderByRelationAggregateInput
+  financialEntries?: Prisma.FinancialEntryOrderByRelationAggregateInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowOrderByRelationAggregateInput
+  apiKeys?: Prisma.ApiKeyOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -222,6 +252,21 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
   inventoryReservations?: Prisma.InventoryReservationListRelationFilter
   inventoryMovements?: Prisma.InventoryMovementListRelationFilter
+  settings?: Prisma.XOR<Prisma.OrganizationSettingsNullableScalarRelationFilter, Prisma.OrganizationSettingsWhereInput> | null
+  orders?: Prisma.OrderListRelationFilter
+  shipments?: Prisma.ShipmentListRelationFilter
+  returns?: Prisma.ReturnListRelationFilter
+  deliveryPartners?: Prisma.DeliveryPartnerListRelationFilter
+  pricingRules?: Prisma.PricingRuleListRelationFilter
+  shippingQuotes?: Prisma.ShippingQuoteListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  creditNotes?: Prisma.CreditNoteListRelationFilter
+  refunds?: Prisma.RefundListRelationFilter
+  partnerPayables?: Prisma.PartnerPayableListRelationFilter
+  financialEntries?: Prisma.FinancialEntryListRelationFilter
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
 }, "id" | "slug">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -259,6 +304,21 @@ export type OrganizationCreateInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -274,6 +334,21 @@ export type OrganizationUncheckedCreateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -289,6 +364,21 @@ export type OrganizationUpdateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -304,6 +394,21 @@ export type OrganizationUncheckedUpdateInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -365,6 +470,20 @@ export type StringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type OrganizationCreateNestedOneWithoutSettingsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingsInput, Prisma.OrganizationUncheckedCreateWithoutSettingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSettingsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingsInput, Prisma.OrganizationUncheckedCreateWithoutSettingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSettingsInput
+  upsert?: Prisma.OrganizationUpsertWithoutSettingsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSettingsInput, Prisma.OrganizationUpdateWithoutSettingsInput>, Prisma.OrganizationUncheckedUpdateWithoutSettingsInput>
 }
 
 export type OrganizationCreateNestedOneWithoutMembershipsInput = {
@@ -465,6 +584,334 @@ export type OrganizationUpdateOneRequiredWithoutInventoryMovementsNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutInventoryMovementsInput, Prisma.OrganizationUpdateWithoutInventoryMovementsInput>, Prisma.OrganizationUncheckedUpdateWithoutInventoryMovementsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOrdersInput, Prisma.OrganizationUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOrdersInput, Prisma.OrganizationUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.OrganizationUpsertWithoutOrdersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOrdersInput, Prisma.OrganizationUpdateWithoutOrdersInput>, Prisma.OrganizationUncheckedUpdateWithoutOrdersInput>
+}
+
+export type OrganizationCreateNestedOneWithoutDeliveryPartnersInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedCreateWithoutDeliveryPartnersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutDeliveryPartnersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutDeliveryPartnersNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedCreateWithoutDeliveryPartnersInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutDeliveryPartnersInput
+  upsert?: Prisma.OrganizationUpsertWithoutDeliveryPartnersInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutDeliveryPartnersInput, Prisma.OrganizationUpdateWithoutDeliveryPartnersInput>, Prisma.OrganizationUncheckedUpdateWithoutDeliveryPartnersInput>
+}
+
+export type OrganizationCreateNestedOneWithoutShipmentsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShipmentsInput, Prisma.OrganizationUncheckedCreateWithoutShipmentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShipmentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShipmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShipmentsInput, Prisma.OrganizationUncheckedCreateWithoutShipmentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShipmentsInput
+  upsert?: Prisma.OrganizationUpsertWithoutShipmentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShipmentsInput, Prisma.OrganizationUpdateWithoutShipmentsInput>, Prisma.OrganizationUncheckedUpdateWithoutShipmentsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutReturnsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutReturnsInput, Prisma.OrganizationUncheckedCreateWithoutReturnsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutReturnsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutReturnsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutReturnsInput, Prisma.OrganizationUncheckedCreateWithoutReturnsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutReturnsInput
+  upsert?: Prisma.OrganizationUpsertWithoutReturnsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutReturnsInput, Prisma.OrganizationUpdateWithoutReturnsInput>, Prisma.OrganizationUncheckedUpdateWithoutReturnsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPricingRulesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPricingRulesInput, Prisma.OrganizationUncheckedCreateWithoutPricingRulesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPricingRulesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPricingRulesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPricingRulesInput, Prisma.OrganizationUncheckedCreateWithoutPricingRulesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPricingRulesInput
+  upsert?: Prisma.OrganizationUpsertWithoutPricingRulesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPricingRulesInput, Prisma.OrganizationUpdateWithoutPricingRulesInput>, Prisma.OrganizationUncheckedUpdateWithoutPricingRulesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutShippingQuotesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedCreateWithoutShippingQuotesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShippingQuotesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutShippingQuotesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedCreateWithoutShippingQuotesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutShippingQuotesInput
+  upsert?: Prisma.OrganizationUpsertWithoutShippingQuotesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutShippingQuotesInput, Prisma.OrganizationUpdateWithoutShippingQuotesInput>, Prisma.OrganizationUncheckedUpdateWithoutShippingQuotesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutInvoicesInput, Prisma.OrganizationUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutInvoicesInput, Prisma.OrganizationUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.OrganizationUpsertWithoutInvoicesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutInvoicesInput, Prisma.OrganizationUpdateWithoutInvoicesInput>, Prisma.OrganizationUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCreditNotesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCreditNotesInput, Prisma.OrganizationUncheckedCreateWithoutCreditNotesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCreditNotesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutCreditNotesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCreditNotesInput, Prisma.OrganizationUncheckedCreateWithoutCreditNotesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCreditNotesInput
+  upsert?: Prisma.OrganizationUpsertWithoutCreditNotesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCreditNotesInput, Prisma.OrganizationUpdateWithoutCreditNotesInput>, Prisma.OrganizationUncheckedUpdateWithoutCreditNotesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutRefundsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRefundsInput, Prisma.OrganizationUncheckedCreateWithoutRefundsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRefundsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutRefundsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutRefundsInput, Prisma.OrganizationUncheckedCreateWithoutRefundsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutRefundsInput
+  upsert?: Prisma.OrganizationUpsertWithoutRefundsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutRefundsInput, Prisma.OrganizationUpdateWithoutRefundsInput>, Prisma.OrganizationUncheckedUpdateWithoutRefundsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutPartnerPayablesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedCreateWithoutPartnerPayablesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPartnerPayablesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutPartnerPayablesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedCreateWithoutPartnerPayablesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutPartnerPayablesInput
+  upsert?: Prisma.OrganizationUpsertWithoutPartnerPayablesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPartnerPayablesInput, Prisma.OrganizationUpdateWithoutPartnerPayablesInput>, Prisma.OrganizationUncheckedUpdateWithoutPartnerPayablesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutFinancialEntriesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedCreateWithoutFinancialEntriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutFinancialEntriesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutFinancialEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedCreateWithoutFinancialEntriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutFinancialEntriesInput
+  upsert?: Prisma.OrganizationUpsertWithoutFinancialEntriesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutFinancialEntriesInput, Prisma.OrganizationUpdateWithoutFinancialEntriesInput>, Prisma.OrganizationUncheckedUpdateWithoutFinancialEntriesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutFulfillmentWorkflowsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedCreateWithoutFulfillmentWorkflowsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutFulfillmentWorkflowsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutFulfillmentWorkflowsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedCreateWithoutFulfillmentWorkflowsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutFulfillmentWorkflowsInput
+  upsert?: Prisma.OrganizationUpsertWithoutFulfillmentWorkflowsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUpdateWithoutFulfillmentWorkflowsInput>, Prisma.OrganizationUncheckedUpdateWithoutFulfillmentWorkflowsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutApiKeysInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutApiKeysInput, Prisma.OrganizationUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutApiKeysInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutApiKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutApiKeysInput, Prisma.OrganizationUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutApiKeysInput
+  upsert?: Prisma.OrganizationUpsertWithoutApiKeysInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutApiKeysInput, Prisma.OrganizationUpdateWithoutApiKeysInput>, Prisma.OrganizationUncheckedUpdateWithoutApiKeysInput>
+}
+
+export type OrganizationCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.OrganizationUpsertWithoutAuditLogsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.OrganizationUpdateWithoutAuditLogsInput>, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type OrganizationCreateWithoutSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSettingsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSettingsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingsInput, Prisma.OrganizationUncheckedCreateWithoutSettingsInput>
+}
+
+export type OrganizationUpsertWithoutSettingsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSettingsInput, Prisma.OrganizationUncheckedUpdateWithoutSettingsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingsInput, Prisma.OrganizationUncheckedCreateWithoutSettingsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSettingsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSettingsInput, Prisma.OrganizationUncheckedUpdateWithoutSettingsInput>
+}
+
+export type OrganizationUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
 export type OrganizationCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -477,6 +924,21 @@ export type OrganizationCreateWithoutMembershipsInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembershipsInput = {
@@ -491,6 +953,21 @@ export type OrganizationUncheckedCreateWithoutMembershipsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembershipsInput = {
@@ -521,6 +998,21 @@ export type OrganizationUpdateWithoutMembershipsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
@@ -535,6 +1027,21 @@ export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutRolesInput = {
@@ -549,6 +1056,21 @@ export type OrganizationCreateWithoutRolesInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutRolesInput = {
@@ -563,6 +1085,21 @@ export type OrganizationUncheckedCreateWithoutRolesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutRolesInput = {
@@ -593,6 +1130,21 @@ export type OrganizationUpdateWithoutRolesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutRolesInput = {
@@ -607,6 +1159,21 @@ export type OrganizationUncheckedUpdateWithoutRolesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutWarehousesInput = {
@@ -621,6 +1188,21 @@ export type OrganizationCreateWithoutWarehousesInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutWarehousesInput = {
@@ -635,6 +1217,21 @@ export type OrganizationUncheckedCreateWithoutWarehousesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutWarehousesInput = {
@@ -665,6 +1262,21 @@ export type OrganizationUpdateWithoutWarehousesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutWarehousesInput = {
@@ -679,6 +1291,21 @@ export type OrganizationUncheckedUpdateWithoutWarehousesInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutProductsInput = {
@@ -693,6 +1320,21 @@ export type OrganizationCreateWithoutProductsInput = {
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutProductsInput = {
@@ -707,6 +1349,21 @@ export type OrganizationUncheckedCreateWithoutProductsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutProductsInput = {
@@ -737,6 +1394,21 @@ export type OrganizationUpdateWithoutProductsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutProductsInput = {
@@ -751,6 +1423,21 @@ export type OrganizationUncheckedUpdateWithoutProductsInput = {
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInventoryBalancesInput = {
@@ -765,6 +1452,21 @@ export type OrganizationCreateWithoutInventoryBalancesInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInventoryBalancesInput = {
@@ -779,6 +1481,21 @@ export type OrganizationUncheckedCreateWithoutInventoryBalancesInput = {
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInventoryBalancesInput = {
@@ -809,6 +1526,21 @@ export type OrganizationUpdateWithoutInventoryBalancesInput = {
   products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInventoryBalancesInput = {
@@ -823,6 +1555,21 @@ export type OrganizationUncheckedUpdateWithoutInventoryBalancesInput = {
   products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInventoryReservationsInput = {
@@ -837,6 +1584,21 @@ export type OrganizationCreateWithoutInventoryReservationsInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInventoryReservationsInput = {
@@ -851,6 +1613,21 @@ export type OrganizationUncheckedCreateWithoutInventoryReservationsInput = {
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInventoryReservationsInput = {
@@ -881,6 +1658,21 @@ export type OrganizationUpdateWithoutInventoryReservationsInput = {
   products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInventoryReservationsInput = {
@@ -895,6 +1687,21 @@ export type OrganizationUncheckedUpdateWithoutInventoryReservationsInput = {
   products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutInventoryMovementsInput = {
@@ -909,6 +1716,21 @@ export type OrganizationCreateWithoutInventoryMovementsInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutInventoryMovementsInput = {
@@ -923,6 +1745,21 @@ export type OrganizationUncheckedCreateWithoutInventoryMovementsInput = {
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutInventoryMovementsInput = {
@@ -953,6 +1790,21 @@ export type OrganizationUpdateWithoutInventoryMovementsInput = {
   products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutInventoryMovementsInput = {
@@ -967,6 +1819,1869 @@ export type OrganizationUncheckedUpdateWithoutInventoryMovementsInput = {
   products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOrdersInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOrdersInput, Prisma.OrganizationUncheckedCreateWithoutOrdersInput>
+}
+
+export type OrganizationUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOrdersInput, Prisma.OrganizationUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOrdersInput, Prisma.OrganizationUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOrdersInput, Prisma.OrganizationUncheckedUpdateWithoutOrdersInput>
+}
+
+export type OrganizationUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutDeliveryPartnersInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutDeliveryPartnersInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutDeliveryPartnersInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedCreateWithoutDeliveryPartnersInput>
+}
+
+export type OrganizationUpsertWithoutDeliveryPartnersInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedUpdateWithoutDeliveryPartnersInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedCreateWithoutDeliveryPartnersInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutDeliveryPartnersInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutDeliveryPartnersInput, Prisma.OrganizationUncheckedUpdateWithoutDeliveryPartnersInput>
+}
+
+export type OrganizationUpdateWithoutDeliveryPartnersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutDeliveryPartnersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShipmentsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShipmentsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShipmentsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShipmentsInput, Prisma.OrganizationUncheckedCreateWithoutShipmentsInput>
+}
+
+export type OrganizationUpsertWithoutShipmentsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShipmentsInput, Prisma.OrganizationUncheckedUpdateWithoutShipmentsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShipmentsInput, Prisma.OrganizationUncheckedCreateWithoutShipmentsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShipmentsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShipmentsInput, Prisma.OrganizationUncheckedUpdateWithoutShipmentsInput>
+}
+
+export type OrganizationUpdateWithoutShipmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShipmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutReturnsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutReturnsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutReturnsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutReturnsInput, Prisma.OrganizationUncheckedCreateWithoutReturnsInput>
+}
+
+export type OrganizationUpsertWithoutReturnsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutReturnsInput, Prisma.OrganizationUncheckedUpdateWithoutReturnsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutReturnsInput, Prisma.OrganizationUncheckedCreateWithoutReturnsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutReturnsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutReturnsInput, Prisma.OrganizationUncheckedUpdateWithoutReturnsInput>
+}
+
+export type OrganizationUpdateWithoutReturnsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutReturnsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPricingRulesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPricingRulesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPricingRulesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPricingRulesInput, Prisma.OrganizationUncheckedCreateWithoutPricingRulesInput>
+}
+
+export type OrganizationUpsertWithoutPricingRulesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPricingRulesInput, Prisma.OrganizationUncheckedUpdateWithoutPricingRulesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPricingRulesInput, Prisma.OrganizationUncheckedCreateWithoutPricingRulesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPricingRulesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPricingRulesInput, Prisma.OrganizationUncheckedUpdateWithoutPricingRulesInput>
+}
+
+export type OrganizationUpdateWithoutPricingRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPricingRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutShippingQuotesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutShippingQuotesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutShippingQuotesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedCreateWithoutShippingQuotesInput>
+}
+
+export type OrganizationUpsertWithoutShippingQuotesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedUpdateWithoutShippingQuotesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedCreateWithoutShippingQuotesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutShippingQuotesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutShippingQuotesInput, Prisma.OrganizationUncheckedUpdateWithoutShippingQuotesInput>
+}
+
+export type OrganizationUpdateWithoutShippingQuotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutShippingQuotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutInvoicesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutInvoicesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutInvoicesInput, Prisma.OrganizationUncheckedCreateWithoutInvoicesInput>
+}
+
+export type OrganizationUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutInvoicesInput, Prisma.OrganizationUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutInvoicesInput, Prisma.OrganizationUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutInvoicesInput, Prisma.OrganizationUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type OrganizationUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCreditNotesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCreditNotesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCreditNotesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCreditNotesInput, Prisma.OrganizationUncheckedCreateWithoutCreditNotesInput>
+}
+
+export type OrganizationUpsertWithoutCreditNotesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCreditNotesInput, Prisma.OrganizationUncheckedUpdateWithoutCreditNotesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCreditNotesInput, Prisma.OrganizationUncheckedCreateWithoutCreditNotesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCreditNotesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCreditNotesInput, Prisma.OrganizationUncheckedUpdateWithoutCreditNotesInput>
+}
+
+export type OrganizationUpdateWithoutCreditNotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCreditNotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutRefundsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutRefundsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutRefundsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRefundsInput, Prisma.OrganizationUncheckedCreateWithoutRefundsInput>
+}
+
+export type OrganizationUpsertWithoutRefundsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutRefundsInput, Prisma.OrganizationUncheckedUpdateWithoutRefundsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutRefundsInput, Prisma.OrganizationUncheckedCreateWithoutRefundsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutRefundsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutRefundsInput, Prisma.OrganizationUncheckedUpdateWithoutRefundsInput>
+}
+
+export type OrganizationUpdateWithoutRefundsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutRefundsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutPartnerPayablesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutPartnerPayablesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutPartnerPayablesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedCreateWithoutPartnerPayablesInput>
+}
+
+export type OrganizationUpsertWithoutPartnerPayablesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedUpdateWithoutPartnerPayablesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedCreateWithoutPartnerPayablesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutPartnerPayablesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutPartnerPayablesInput, Prisma.OrganizationUncheckedUpdateWithoutPartnerPayablesInput>
+}
+
+export type OrganizationUpdateWithoutPartnerPayablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutPartnerPayablesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutFinancialEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutFinancialEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutFinancialEntriesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedCreateWithoutFinancialEntriesInput>
+}
+
+export type OrganizationUpsertWithoutFinancialEntriesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedUpdateWithoutFinancialEntriesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedCreateWithoutFinancialEntriesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutFinancialEntriesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutFinancialEntriesInput, Prisma.OrganizationUncheckedUpdateWithoutFinancialEntriesInput>
+}
+
+export type OrganizationUpdateWithoutFinancialEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutFinancialEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutFulfillmentWorkflowsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutFulfillmentWorkflowsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutFulfillmentWorkflowsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedCreateWithoutFulfillmentWorkflowsInput>
+}
+
+export type OrganizationUpsertWithoutFulfillmentWorkflowsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedUpdateWithoutFulfillmentWorkflowsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedCreateWithoutFulfillmentWorkflowsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutFulfillmentWorkflowsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutFulfillmentWorkflowsInput, Prisma.OrganizationUncheckedUpdateWithoutFulfillmentWorkflowsInput>
+}
+
+export type OrganizationUpdateWithoutFulfillmentWorkflowsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutFulfillmentWorkflowsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutApiKeysInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutApiKeysInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutApiKeysInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutApiKeysInput, Prisma.OrganizationUncheckedCreateWithoutApiKeysInput>
+}
+
+export type OrganizationUpsertWithoutApiKeysInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutApiKeysInput, Prisma.OrganizationUncheckedUpdateWithoutApiKeysInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutApiKeysInput, Prisma.OrganizationUncheckedCreateWithoutApiKeysInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutApiKeysInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutApiKeysInput, Prisma.OrganizationUncheckedUpdateWithoutApiKeysInput>
+}
+
+export type OrganizationUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutAuditLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutOrganizationInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutOrganizationInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutOrganizationInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutOrganizationInput
+  settings?: Prisma.OrganizationSettingsUncheckedCreateNestedOneWithoutOrganizationInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutOrganizationInput
+  shipments?: Prisma.ShipmentUncheckedCreateNestedManyWithoutOrganizationInput
+  returns?: Prisma.ReturnUncheckedCreateNestedManyWithoutOrganizationInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedCreateNestedManyWithoutOrganizationInput
+  pricingRules?: Prisma.PricingRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedCreateNestedManyWithoutOrganizationInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrganizationInput
+  creditNotes?: Prisma.CreditNoteUncheckedCreateNestedManyWithoutOrganizationInput
+  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutOrganizationInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedCreateNestedManyWithoutOrganizationInput
+  financialEntries?: Prisma.FinancialEntryUncheckedCreateNestedManyWithoutOrganizationInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedCreateNestedManyWithoutOrganizationInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type OrganizationUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditLogsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAuditLogsInput, Prisma.OrganizationUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAuditLogsInput, Prisma.OrganizationUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type OrganizationUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutOrganizationNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutOrganizationNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutOrganizationNestedInput
+  inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutOrganizationNestedInput
+  settings?: Prisma.OrganizationSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutOrganizationNestedInput
+  shipments?: Prisma.ShipmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  returns?: Prisma.ReturnUncheckedUpdateManyWithoutOrganizationNestedInput
+  deliveryPartners?: Prisma.DeliveryPartnerUncheckedUpdateManyWithoutOrganizationNestedInput
+  pricingRules?: Prisma.PricingRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  shippingQuotes?: Prisma.ShippingQuoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  creditNotes?: Prisma.CreditNoteUncheckedUpdateManyWithoutOrganizationNestedInput
+  refunds?: Prisma.RefundUncheckedUpdateManyWithoutOrganizationNestedInput
+  partnerPayables?: Prisma.PartnerPayableUncheckedUpdateManyWithoutOrganizationNestedInput
+  financialEntries?: Prisma.FinancialEntryUncheckedUpdateManyWithoutOrganizationNestedInput
+  fulfillmentWorkflows?: Prisma.FulfillmentWorkflowUncheckedUpdateManyWithoutOrganizationNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -982,6 +3697,20 @@ export type OrganizationCountOutputType = {
   inventoryBalances: number
   inventoryReservations: number
   inventoryMovements: number
+  orders: number
+  shipments: number
+  returns: number
+  deliveryPartners: number
+  pricingRules: number
+  shippingQuotes: number
+  invoices: number
+  creditNotes: number
+  refunds: number
+  partnerPayables: number
+  financialEntries: number
+  fulfillmentWorkflows: number
+  apiKeys: number
+  auditLogs: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -992,6 +3721,20 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   inventoryBalances?: boolean | OrganizationCountOutputTypeCountInventoryBalancesArgs
   inventoryReservations?: boolean | OrganizationCountOutputTypeCountInventoryReservationsArgs
   inventoryMovements?: boolean | OrganizationCountOutputTypeCountInventoryMovementsArgs
+  orders?: boolean | OrganizationCountOutputTypeCountOrdersArgs
+  shipments?: boolean | OrganizationCountOutputTypeCountShipmentsArgs
+  returns?: boolean | OrganizationCountOutputTypeCountReturnsArgs
+  deliveryPartners?: boolean | OrganizationCountOutputTypeCountDeliveryPartnersArgs
+  pricingRules?: boolean | OrganizationCountOutputTypeCountPricingRulesArgs
+  shippingQuotes?: boolean | OrganizationCountOutputTypeCountShippingQuotesArgs
+  invoices?: boolean | OrganizationCountOutputTypeCountInvoicesArgs
+  creditNotes?: boolean | OrganizationCountOutputTypeCountCreditNotesArgs
+  refunds?: boolean | OrganizationCountOutputTypeCountRefundsArgs
+  partnerPayables?: boolean | OrganizationCountOutputTypeCountPartnerPayablesArgs
+  financialEntries?: boolean | OrganizationCountOutputTypeCountFinancialEntriesArgs
+  fulfillmentWorkflows?: boolean | OrganizationCountOutputTypeCountFulfillmentWorkflowsArgs
+  apiKeys?: boolean | OrganizationCountOutputTypeCountApiKeysArgs
+  auditLogs?: boolean | OrganizationCountOutputTypeCountAuditLogsArgs
 }
 
 /**
@@ -1053,6 +3796,104 @@ export type OrganizationCountOutputTypeCountInventoryMovementsArgs<ExtArgs exten
   where?: Prisma.InventoryMovementWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountShipmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShipmentWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountReturnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReturnWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountDeliveryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeliveryPartnerWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPricingRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PricingRuleWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountShippingQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShippingQuoteWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCreditNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CreditNoteWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountRefundsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RefundWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountPartnerPayablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PartnerPayableWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountFinancialEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FinancialEntryWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountFulfillmentWorkflowsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FulfillmentWorkflowWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiKeyWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1067,6 +3908,21 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   inventoryBalances?: boolean | Prisma.Organization$inventoryBalancesArgs<ExtArgs>
   inventoryReservations?: boolean | Prisma.Organization$inventoryReservationsArgs<ExtArgs>
   inventoryMovements?: boolean | Prisma.Organization$inventoryMovementsArgs<ExtArgs>
+  settings?: boolean | Prisma.Organization$settingsArgs<ExtArgs>
+  orders?: boolean | Prisma.Organization$ordersArgs<ExtArgs>
+  shipments?: boolean | Prisma.Organization$shipmentsArgs<ExtArgs>
+  returns?: boolean | Prisma.Organization$returnsArgs<ExtArgs>
+  deliveryPartners?: boolean | Prisma.Organization$deliveryPartnersArgs<ExtArgs>
+  pricingRules?: boolean | Prisma.Organization$pricingRulesArgs<ExtArgs>
+  shippingQuotes?: boolean | Prisma.Organization$shippingQuotesArgs<ExtArgs>
+  invoices?: boolean | Prisma.Organization$invoicesArgs<ExtArgs>
+  creditNotes?: boolean | Prisma.Organization$creditNotesArgs<ExtArgs>
+  refunds?: boolean | Prisma.Organization$refundsArgs<ExtArgs>
+  partnerPayables?: boolean | Prisma.Organization$partnerPayablesArgs<ExtArgs>
+  financialEntries?: boolean | Prisma.Organization$financialEntriesArgs<ExtArgs>
+  fulfillmentWorkflows?: boolean | Prisma.Organization$fulfillmentWorkflowsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Organization$apiKeysArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1103,6 +3959,21 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   inventoryBalances?: boolean | Prisma.Organization$inventoryBalancesArgs<ExtArgs>
   inventoryReservations?: boolean | Prisma.Organization$inventoryReservationsArgs<ExtArgs>
   inventoryMovements?: boolean | Prisma.Organization$inventoryMovementsArgs<ExtArgs>
+  settings?: boolean | Prisma.Organization$settingsArgs<ExtArgs>
+  orders?: boolean | Prisma.Organization$ordersArgs<ExtArgs>
+  shipments?: boolean | Prisma.Organization$shipmentsArgs<ExtArgs>
+  returns?: boolean | Prisma.Organization$returnsArgs<ExtArgs>
+  deliveryPartners?: boolean | Prisma.Organization$deliveryPartnersArgs<ExtArgs>
+  pricingRules?: boolean | Prisma.Organization$pricingRulesArgs<ExtArgs>
+  shippingQuotes?: boolean | Prisma.Organization$shippingQuotesArgs<ExtArgs>
+  invoices?: boolean | Prisma.Organization$invoicesArgs<ExtArgs>
+  creditNotes?: boolean | Prisma.Organization$creditNotesArgs<ExtArgs>
+  refunds?: boolean | Prisma.Organization$refundsArgs<ExtArgs>
+  partnerPayables?: boolean | Prisma.Organization$partnerPayablesArgs<ExtArgs>
+  financialEntries?: boolean | Prisma.Organization$financialEntriesArgs<ExtArgs>
+  fulfillmentWorkflows?: boolean | Prisma.Organization$fulfillmentWorkflowsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Organization$apiKeysArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1118,6 +3989,21 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     inventoryBalances: Prisma.$InventoryBalancePayload<ExtArgs>[]
     inventoryReservations: Prisma.$InventoryReservationPayload<ExtArgs>[]
     inventoryMovements: Prisma.$InventoryMovementPayload<ExtArgs>[]
+    settings: Prisma.$OrganizationSettingsPayload<ExtArgs> | null
+    orders: Prisma.$OrderPayload<ExtArgs>[]
+    shipments: Prisma.$ShipmentPayload<ExtArgs>[]
+    returns: Prisma.$ReturnPayload<ExtArgs>[]
+    deliveryPartners: Prisma.$DeliveryPartnerPayload<ExtArgs>[]
+    pricingRules: Prisma.$PricingRulePayload<ExtArgs>[]
+    shippingQuotes: Prisma.$ShippingQuotePayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    creditNotes: Prisma.$CreditNotePayload<ExtArgs>[]
+    refunds: Prisma.$RefundPayload<ExtArgs>[]
+    partnerPayables: Prisma.$PartnerPayablePayload<ExtArgs>[]
+    financialEntries: Prisma.$FinancialEntryPayload<ExtArgs>[]
+    fulfillmentWorkflows: Prisma.$FulfillmentWorkflowPayload<ExtArgs>[]
+    apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1526,6 +4412,21 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   inventoryBalances<T extends Prisma.Organization$inventoryBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$inventoryBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryReservations<T extends Prisma.Organization$inventoryReservationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$inventoryReservationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryReservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryMovements<T extends Prisma.Organization$inventoryMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$inventoryMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  settings<T extends Prisma.Organization$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$settingsArgs<ExtArgs>>): Prisma.Prisma__OrganizationSettingsClient<runtime.Types.Result.GetResult<Prisma.$OrganizationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  orders<T extends Prisma.Organization$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shipments<T extends Prisma.Organization$shipmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  returns<T extends Prisma.Organization$returnsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$returnsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReturnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deliveryPartners<T extends Prisma.Organization$deliveryPartnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$deliveryPartnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeliveryPartnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pricingRules<T extends Prisma.Organization$pricingRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$pricingRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PricingRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shippingQuotes<T extends Prisma.Organization$shippingQuotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$shippingQuotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShippingQuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Organization$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  creditNotes<T extends Prisma.Organization$creditNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$creditNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CreditNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  refunds<T extends Prisma.Organization$refundsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$refundsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  partnerPayables<T extends Prisma.Organization$partnerPayablesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$partnerPayablesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartnerPayablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  financialEntries<T extends Prisma.Organization$financialEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$financialEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinancialEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  fulfillmentWorkflows<T extends Prisma.Organization$fulfillmentWorkflowsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$fulfillmentWorkflowsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FulfillmentWorkflowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  apiKeys<T extends Prisma.Organization$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.Organization$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2118,6 +5019,361 @@ export type Organization$inventoryMovementsArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.InventoryMovementScalarFieldEnum | Prisma.InventoryMovementScalarFieldEnum[]
+}
+
+/**
+ * Organization.settings
+ */
+export type Organization$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganizationSettings
+   */
+  select?: Prisma.OrganizationSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganizationSettings
+   */
+  omit?: Prisma.OrganizationSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationSettingsInclude<ExtArgs> | null
+  where?: Prisma.OrganizationSettingsWhereInput
+}
+
+/**
+ * Organization.orders
+ */
+export type Organization$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * Organization.shipments
+ */
+export type Organization$shipmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Shipment
+   */
+  select?: Prisma.ShipmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Shipment
+   */
+  omit?: Prisma.ShipmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipmentInclude<ExtArgs> | null
+  where?: Prisma.ShipmentWhereInput
+  orderBy?: Prisma.ShipmentOrderByWithRelationInput | Prisma.ShipmentOrderByWithRelationInput[]
+  cursor?: Prisma.ShipmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShipmentScalarFieldEnum | Prisma.ShipmentScalarFieldEnum[]
+}
+
+/**
+ * Organization.returns
+ */
+export type Organization$returnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Return
+   */
+  select?: Prisma.ReturnSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Return
+   */
+  omit?: Prisma.ReturnOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReturnInclude<ExtArgs> | null
+  where?: Prisma.ReturnWhereInput
+  orderBy?: Prisma.ReturnOrderByWithRelationInput | Prisma.ReturnOrderByWithRelationInput[]
+  cursor?: Prisma.ReturnWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReturnScalarFieldEnum | Prisma.ReturnScalarFieldEnum[]
+}
+
+/**
+ * Organization.deliveryPartners
+ */
+export type Organization$deliveryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeliveryPartner
+   */
+  select?: Prisma.DeliveryPartnerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeliveryPartner
+   */
+  omit?: Prisma.DeliveryPartnerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeliveryPartnerInclude<ExtArgs> | null
+  where?: Prisma.DeliveryPartnerWhereInput
+  orderBy?: Prisma.DeliveryPartnerOrderByWithRelationInput | Prisma.DeliveryPartnerOrderByWithRelationInput[]
+  cursor?: Prisma.DeliveryPartnerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeliveryPartnerScalarFieldEnum | Prisma.DeliveryPartnerScalarFieldEnum[]
+}
+
+/**
+ * Organization.pricingRules
+ */
+export type Organization$pricingRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PricingRule
+   */
+  select?: Prisma.PricingRuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PricingRule
+   */
+  omit?: Prisma.PricingRuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PricingRuleInclude<ExtArgs> | null
+  where?: Prisma.PricingRuleWhereInput
+  orderBy?: Prisma.PricingRuleOrderByWithRelationInput | Prisma.PricingRuleOrderByWithRelationInput[]
+  cursor?: Prisma.PricingRuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PricingRuleScalarFieldEnum | Prisma.PricingRuleScalarFieldEnum[]
+}
+
+/**
+ * Organization.shippingQuotes
+ */
+export type Organization$shippingQuotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShippingQuote
+   */
+  select?: Prisma.ShippingQuoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShippingQuote
+   */
+  omit?: Prisma.ShippingQuoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShippingQuoteInclude<ExtArgs> | null
+  where?: Prisma.ShippingQuoteWhereInput
+  orderBy?: Prisma.ShippingQuoteOrderByWithRelationInput | Prisma.ShippingQuoteOrderByWithRelationInput[]
+  cursor?: Prisma.ShippingQuoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShippingQuoteScalarFieldEnum | Prisma.ShippingQuoteScalarFieldEnum[]
+}
+
+/**
+ * Organization.invoices
+ */
+export type Organization$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Organization.creditNotes
+ */
+export type Organization$creditNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CreditNote
+   */
+  select?: Prisma.CreditNoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CreditNote
+   */
+  omit?: Prisma.CreditNoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CreditNoteInclude<ExtArgs> | null
+  where?: Prisma.CreditNoteWhereInput
+  orderBy?: Prisma.CreditNoteOrderByWithRelationInput | Prisma.CreditNoteOrderByWithRelationInput[]
+  cursor?: Prisma.CreditNoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CreditNoteScalarFieldEnum | Prisma.CreditNoteScalarFieldEnum[]
+}
+
+/**
+ * Organization.refunds
+ */
+export type Organization$refundsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Refund
+   */
+  select?: Prisma.RefundSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Refund
+   */
+  omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
+  where?: Prisma.RefundWhereInput
+  orderBy?: Prisma.RefundOrderByWithRelationInput | Prisma.RefundOrderByWithRelationInput[]
+  cursor?: Prisma.RefundWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RefundScalarFieldEnum | Prisma.RefundScalarFieldEnum[]
+}
+
+/**
+ * Organization.partnerPayables
+ */
+export type Organization$partnerPayablesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PartnerPayable
+   */
+  select?: Prisma.PartnerPayableSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PartnerPayable
+   */
+  omit?: Prisma.PartnerPayableOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PartnerPayableInclude<ExtArgs> | null
+  where?: Prisma.PartnerPayableWhereInput
+  orderBy?: Prisma.PartnerPayableOrderByWithRelationInput | Prisma.PartnerPayableOrderByWithRelationInput[]
+  cursor?: Prisma.PartnerPayableWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PartnerPayableScalarFieldEnum | Prisma.PartnerPayableScalarFieldEnum[]
+}
+
+/**
+ * Organization.financialEntries
+ */
+export type Organization$financialEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FinancialEntry
+   */
+  select?: Prisma.FinancialEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FinancialEntry
+   */
+  omit?: Prisma.FinancialEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FinancialEntryInclude<ExtArgs> | null
+  where?: Prisma.FinancialEntryWhereInput
+  orderBy?: Prisma.FinancialEntryOrderByWithRelationInput | Prisma.FinancialEntryOrderByWithRelationInput[]
+  cursor?: Prisma.FinancialEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FinancialEntryScalarFieldEnum | Prisma.FinancialEntryScalarFieldEnum[]
+}
+
+/**
+ * Organization.fulfillmentWorkflows
+ */
+export type Organization$fulfillmentWorkflowsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FulfillmentWorkflow
+   */
+  select?: Prisma.FulfillmentWorkflowSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FulfillmentWorkflow
+   */
+  omit?: Prisma.FulfillmentWorkflowOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FulfillmentWorkflowInclude<ExtArgs> | null
+  where?: Prisma.FulfillmentWorkflowWhereInput
+  orderBy?: Prisma.FulfillmentWorkflowOrderByWithRelationInput | Prisma.FulfillmentWorkflowOrderByWithRelationInput[]
+  cursor?: Prisma.FulfillmentWorkflowWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FulfillmentWorkflowScalarFieldEnum | Prisma.FulfillmentWorkflowScalarFieldEnum[]
+}
+
+/**
+ * Organization.apiKeys
+ */
+export type Organization$apiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiKey
+   */
+  select?: Prisma.ApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiKey
+   */
+  omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  where?: Prisma.ApiKeyWhereInput
+  orderBy?: Prisma.ApiKeyOrderByWithRelationInput | Prisma.ApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.ApiKeyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiKeyScalarFieldEnum | Prisma.ApiKeyScalarFieldEnum[]
+}
+
+/**
+ * Organization.auditLogs
+ */
+export type Organization$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AuditLog
+   */
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AuditLog
+   */
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**

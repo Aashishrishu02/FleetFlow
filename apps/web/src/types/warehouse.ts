@@ -3,6 +3,7 @@ export interface StorageLocation {
   warehouseId: string;
   name: string;
   code: string;
+  type?: string;
   createdAt: string;
   _count?: {
     inventoryBalances?: number;

@@ -117,15 +117,21 @@ export class TenantRolesGuard implements CanActivate {
       new Set(userRoles.flatMap((r) => ROLE_PERMISSIONS[r] || [])),
     );
 
-    // 4. Verify @Roles() if present
+    // 4. Check if user is SuperAdmin / Organization Owner with absolute privileges
+    const isSuperAdmin =
+      userRoles.includes(RoleName.ORGANIZATION_OWNER) ||
+      userRoles.includes(RoleName.ADMIN) ||
+      userRoles.includes('Admin') ||
+      userRoles.includes('System Administrator');
+
+    // 5. Verify @Roles() if present
     const requiredRoles = this.reflector.getAllAndOverride<(RoleName | string)[]>(ROLES_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
 
     if (requiredRoles && requiredRoles.length > 0) {
-      const isOwner = userRoles.includes(RoleName.ORGANIZATION_OWNER);
-      const hasRequiredRole = isOwner || requiredRoles.some((role) => userRoles.includes(role));
+      const hasRequiredRole = isSuperAdmin || requiredRoles.some((role) => userRoles.includes(role));
 
       if (!hasRequiredRole) {
         throw new ForbiddenException(
@@ -134,15 +140,14 @@ export class TenantRolesGuard implements CanActivate {
       }
     }
 
-    // 5. Verify @RequirePermissions() if present
+    // 6. Verify @RequirePermissions() if present
     const requiredPermissions = this.reflector.getAllAndOverride<Permission[]>(
       PERMISSIONS_KEY,
       [context.getHandler(), context.getClass()],
     );
 
     if (requiredPermissions && requiredPermissions.length > 0) {
-      const isOwner = userRoles.includes(RoleName.ORGANIZATION_OWNER);
-      if (!isOwner) {
+      if (!isSuperAdmin) {
         const missingPermissions = requiredPermissions.filter(
           (permission) => !userPermissions.includes(permission),
         );

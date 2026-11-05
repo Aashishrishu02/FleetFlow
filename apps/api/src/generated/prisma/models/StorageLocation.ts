@@ -29,6 +29,7 @@ export type StorageLocationMinAggregateOutputType = {
   warehouseId: string | null
   name: string | null
   code: string | null
+  type: string | null
   createdAt: Date | null
 }
 
@@ -37,6 +38,7 @@ export type StorageLocationMaxAggregateOutputType = {
   warehouseId: string | null
   name: string | null
   code: string | null
+  type: string | null
   createdAt: Date | null
 }
 
@@ -45,6 +47,7 @@ export type StorageLocationCountAggregateOutputType = {
   warehouseId: number
   name: number
   code: number
+  type: number
   createdAt: number
   _all: number
 }
@@ -55,6 +58,7 @@ export type StorageLocationMinAggregateInputType = {
   warehouseId?: true
   name?: true
   code?: true
+  type?: true
   createdAt?: true
 }
 
@@ -63,6 +67,7 @@ export type StorageLocationMaxAggregateInputType = {
   warehouseId?: true
   name?: true
   code?: true
+  type?: true
   createdAt?: true
 }
 
@@ -71,6 +76,7 @@ export type StorageLocationCountAggregateInputType = {
   warehouseId?: true
   name?: true
   code?: true
+  type?: true
   createdAt?: true
   _all?: true
 }
@@ -152,6 +158,7 @@ export type StorageLocationGroupByOutputType = {
   warehouseId: string
   name: string
   code: string
+  type: string
   createdAt: Date
   _count: StorageLocationCountAggregateOutputType | null
   _min: StorageLocationMinAggregateOutputType | null
@@ -181,6 +188,7 @@ export type StorageLocationWhereInput = {
   warehouseId?: Prisma.UuidFilter<"StorageLocation"> | string
   name?: Prisma.StringFilter<"StorageLocation"> | string
   code?: Prisma.StringFilter<"StorageLocation"> | string
+  type?: Prisma.StringFilter<"StorageLocation"> | string
   createdAt?: Prisma.DateTimeFilter<"StorageLocation"> | Date | string
   warehouse?: Prisma.XOR<Prisma.WarehouseScalarRelationFilter, Prisma.WarehouseWhereInput>
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
@@ -193,6 +201,7 @@ export type StorageLocationOrderByWithRelationInput = {
   warehouseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   warehouse?: Prisma.WarehouseOrderByWithRelationInput
   inventoryBalances?: Prisma.InventoryBalanceOrderByRelationAggregateInput
@@ -209,6 +218,7 @@ export type StorageLocationWhereUniqueInput = Prisma.AtLeast<{
   warehouseId?: Prisma.UuidFilter<"StorageLocation"> | string
   name?: Prisma.StringFilter<"StorageLocation"> | string
   code?: Prisma.StringFilter<"StorageLocation"> | string
+  type?: Prisma.StringFilter<"StorageLocation"> | string
   createdAt?: Prisma.DateTimeFilter<"StorageLocation"> | Date | string
   warehouse?: Prisma.XOR<Prisma.WarehouseScalarRelationFilter, Prisma.WarehouseWhereInput>
   inventoryBalances?: Prisma.InventoryBalanceListRelationFilter
@@ -221,6 +231,7 @@ export type StorageLocationOrderByWithAggregationInput = {
   warehouseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.StorageLocationCountOrderByAggregateInput
   _max?: Prisma.StorageLocationMaxOrderByAggregateInput
@@ -235,6 +246,7 @@ export type StorageLocationScalarWhereWithAggregatesInput = {
   warehouseId?: Prisma.UuidWithAggregatesFilter<"StorageLocation"> | string
   name?: Prisma.StringWithAggregatesFilter<"StorageLocation"> | string
   code?: Prisma.StringWithAggregatesFilter<"StorageLocation"> | string
+  type?: Prisma.StringWithAggregatesFilter<"StorageLocation"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StorageLocation"> | Date | string
 }
 
@@ -242,6 +254,7 @@ export type StorageLocationCreateInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutLocationInput
@@ -254,6 +267,7 @@ export type StorageLocationUncheckedCreateInput = {
   warehouseId: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutLocationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutLocationInput
@@ -264,6 +278,7 @@ export type StorageLocationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutLocationNestedInput
@@ -276,6 +291,7 @@ export type StorageLocationUncheckedUpdateInput = {
   warehouseId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutLocationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutLocationNestedInput
@@ -287,6 +303,7 @@ export type StorageLocationCreateManyInput = {
   warehouseId: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
 }
 
@@ -294,6 +311,7 @@ export type StorageLocationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -302,6 +320,7 @@ export type StorageLocationUncheckedUpdateManyInput = {
   warehouseId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -325,6 +344,7 @@ export type StorageLocationCountOrderByAggregateInput = {
   warehouseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -333,6 +353,7 @@ export type StorageLocationMaxOrderByAggregateInput = {
   warehouseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -341,6 +362,7 @@ export type StorageLocationMinOrderByAggregateInput = {
   warehouseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -437,6 +459,7 @@ export type StorageLocationCreateWithoutWarehouseInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutLocationInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutLocationInput
@@ -447,6 +470,7 @@ export type StorageLocationUncheckedCreateWithoutWarehouseInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutLocationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutLocationInput
@@ -487,6 +511,7 @@ export type StorageLocationScalarWhereInput = {
   warehouseId?: Prisma.UuidFilter<"StorageLocation"> | string
   name?: Prisma.StringFilter<"StorageLocation"> | string
   code?: Prisma.StringFilter<"StorageLocation"> | string
+  type?: Prisma.StringFilter<"StorageLocation"> | string
   createdAt?: Prisma.DateTimeFilter<"StorageLocation"> | Date | string
 }
 
@@ -494,6 +519,7 @@ export type StorageLocationCreateWithoutInventoryBalancesInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   inventoryReservations?: Prisma.InventoryReservationCreateNestedManyWithoutLocationInput
@@ -505,6 +531,7 @@ export type StorageLocationUncheckedCreateWithoutInventoryBalancesInput = {
   warehouseId: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutLocationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutLocationInput
@@ -530,6 +557,7 @@ export type StorageLocationUpdateWithoutInventoryBalancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutLocationNestedInput
@@ -541,6 +569,7 @@ export type StorageLocationUncheckedUpdateWithoutInventoryBalancesInput = {
   warehouseId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutLocationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutLocationNestedInput
@@ -550,6 +579,7 @@ export type StorageLocationCreateWithoutInventoryReservationsInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutLocationInput
@@ -561,6 +591,7 @@ export type StorageLocationUncheckedCreateWithoutInventoryReservationsInput = {
   warehouseId: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutLocationInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedCreateNestedManyWithoutLocationInput
@@ -586,6 +617,7 @@ export type StorageLocationUpdateWithoutInventoryReservationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutLocationNestedInput
@@ -597,6 +629,7 @@ export type StorageLocationUncheckedUpdateWithoutInventoryReservationsInput = {
   warehouseId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutLocationNestedInput
   inventoryMovements?: Prisma.InventoryMovementUncheckedUpdateManyWithoutLocationNestedInput
@@ -606,6 +639,7 @@ export type StorageLocationCreateWithoutInventoryMovementsInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   inventoryBalances?: Prisma.InventoryBalanceCreateNestedManyWithoutLocationInput
@@ -617,6 +651,7 @@ export type StorageLocationUncheckedCreateWithoutInventoryMovementsInput = {
   warehouseId: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedCreateNestedManyWithoutLocationInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedCreateNestedManyWithoutLocationInput
@@ -642,6 +677,7 @@ export type StorageLocationUpdateWithoutInventoryMovementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutLocationNestedInput
@@ -653,6 +689,7 @@ export type StorageLocationUncheckedUpdateWithoutInventoryMovementsInput = {
   warehouseId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutLocationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutLocationNestedInput
@@ -662,6 +699,7 @@ export type StorageLocationCreateManyWarehouseInput = {
   id?: string
   name: string
   code: string
+  type?: string
   createdAt?: Date | string
 }
 
@@ -669,6 +707,7 @@ export type StorageLocationUpdateWithoutWarehouseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryBalances?: Prisma.InventoryBalanceUpdateManyWithoutLocationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUpdateManyWithoutLocationNestedInput
@@ -679,6 +718,7 @@ export type StorageLocationUncheckedUpdateWithoutWarehouseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventoryBalances?: Prisma.InventoryBalanceUncheckedUpdateManyWithoutLocationNestedInput
   inventoryReservations?: Prisma.InventoryReservationUncheckedUpdateManyWithoutLocationNestedInput
@@ -689,6 +729,7 @@ export type StorageLocationUncheckedUpdateManyWithoutWarehouseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -746,6 +787,7 @@ export type StorageLocationSelect<ExtArgs extends runtime.Types.Extensions.Inter
   warehouseId?: boolean
   name?: boolean
   code?: boolean
+  type?: boolean
   createdAt?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   inventoryBalances?: boolean | Prisma.StorageLocation$inventoryBalancesArgs<ExtArgs>
@@ -759,6 +801,7 @@ export type StorageLocationSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   warehouseId?: boolean
   name?: boolean
   code?: boolean
+  type?: boolean
   createdAt?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["storageLocation"]>
@@ -768,6 +811,7 @@ export type StorageLocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   warehouseId?: boolean
   name?: boolean
   code?: boolean
+  type?: boolean
   createdAt?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["storageLocation"]>
@@ -777,10 +821,11 @@ export type StorageLocationSelectScalar = {
   warehouseId?: boolean
   name?: boolean
   code?: boolean
+  type?: boolean
   createdAt?: boolean
 }
 
-export type StorageLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "warehouseId" | "name" | "code" | "createdAt", ExtArgs["result"]["storageLocation"]>
+export type StorageLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "warehouseId" | "name" | "code" | "type" | "createdAt", ExtArgs["result"]["storageLocation"]>
 export type StorageLocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   inventoryBalances?: boolean | Prisma.StorageLocation$inventoryBalancesArgs<ExtArgs>
@@ -808,6 +853,7 @@ export type $StorageLocationPayload<ExtArgs extends runtime.Types.Extensions.Int
     warehouseId: string
     name: string
     code: string
+    type: string
     createdAt: Date
   }, ExtArgs["result"]["storageLocation"]>
   composites: {}
@@ -1240,6 +1286,7 @@ export interface StorageLocationFieldRefs {
   readonly warehouseId: Prisma.FieldRef<"StorageLocation", 'String'>
   readonly name: Prisma.FieldRef<"StorageLocation", 'String'>
   readonly code: Prisma.FieldRef<"StorageLocation", 'String'>
+  readonly type: Prisma.FieldRef<"StorageLocation", 'String'>
   readonly createdAt: Prisma.FieldRef<"StorageLocation", 'DateTime'>
 }
     

@@ -18,11 +18,15 @@ describe('ProductsService', () => {
         findMany: vi.fn(),
         create: vi.fn(),
         update: vi.fn(),
+        delete: vi.fn(),
       },
       inventoryBalance: {
         findFirst: vi.fn(),
       },
       inventoryReservation: {
+        findFirst: vi.fn(),
+      },
+      orderItem: {
         findFirst: vi.fn(),
       },
     };
@@ -56,6 +60,7 @@ describe('ProductsService', () => {
           name: 'Wireless Barcode Scanner',
           sku: 'WBS-001',
           description: 'Handheld scanner',
+          category: 'General',
           unit: 'UNIT',
           isActive: true,
         },
@@ -235,6 +240,53 @@ describe('ProductsService', () => {
       await expect(
         service.updateStatus(orgA, productId, false),
       ).rejects.toThrow(BadRequestException);
+    });
+  });
+
+  describe('deleteProduct & safe deletion', () => {
+    it('should block deletion if active inventory balance exists', async () => {
+      mockPrisma.product.findUnique.mockResolvedValueOnce({
+        id: productId,
+        organizationId: orgA,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce({
+        id: 'bal-1',
+        availableQty: 10,
+      });
+
+      await expect(service.deleteProduct(orgA, productId)).rejects.toThrow(
+        BadRequestException,
+      );
+    });
+
+    it('should block deletion if product is referenced in customer orders', async () => {
+      mockPrisma.product.findUnique.mockResolvedValueOnce({
+        id: productId,
+        organizationId: orgA,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.orderItem.findFirst.mockResolvedValueOnce({
+        id: 'item-1',
+        productId,
+      });
+
+      await expect(service.deleteProduct(orgA, productId)).rejects.toThrow(
+        BadRequestException,
+      );
+    });
+
+    it('should successfully delete product when no stock and no orders exist', async () => {
+      mockPrisma.product.findUnique.mockResolvedValueOnce({
+        id: productId,
+        organizationId: orgA,
+      });
+      mockPrisma.inventoryBalance.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.orderItem.findFirst.mockResolvedValueOnce(null);
+      mockPrisma.product.delete.mockResolvedValueOnce({ id: productId });
+
+      const res = await service.deleteProduct(orgA, productId);
+      expect(res.message).toContain('deleted successfully');
+      expect(mockPrisma.product.delete).toHaveBeenCalledWith({ where: { id: productId } });
     });
   });
 });

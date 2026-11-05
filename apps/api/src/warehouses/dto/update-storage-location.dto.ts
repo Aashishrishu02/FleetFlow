@@ -16,5 +16,9 @@ export class UpdateStorageLocationDto {
     message: 'Location code must contain only letters, numbers, hyphens, and underscores',
   })
   code?: string;
-}
 
+  @ApiPropertyOptional({ description: 'Storage location type (Zone, Rack, Shelf, Bin)' })
+  @IsOptional()
+  @IsString()
+  type?: string;
+}

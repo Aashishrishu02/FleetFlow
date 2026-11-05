@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: 'apps/api/.env' });
+dotenv.config();
 
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
@@ -8,14 +11,19 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-  origin: [
-  'http://localhost:5173',
-  'http://127.0.0.1:5173',
-  'https://fleet-flow-oshf.vercel.app',
-],
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  credentials: true,
-});
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:5175',
+      'http://127.0.0.1:5173',
+      'http://127.0.0.1:5174',
+      'http://127.0.0.1:5175',
+      'https://fleet-flow-oshf.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-tenant-id', 'Idempotency-Key'],
+    credentials: true,
+  });
 
   app.setGlobalPrefix('api/v1');
 
